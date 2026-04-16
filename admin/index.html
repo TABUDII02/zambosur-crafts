@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZamboSur Crafts - Admin Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h1>Admin Panel</h1>
+            <p>ZamboSur Crafts Admin Login</p>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <p id="loginMessage"></p>
+        </div>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const messageEl = document.getElementById('loginMessage');
+    
+    try {
+        const response = await fetch('../backend/index.php/admin/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+        });
+
+        // First, get the raw text to check for hidden errors
+        const text = await response.text();
+        
+        try {
+            const data = JSON.parse(text); // Manually parse the text
+            
+            if (data.success) {
+                messageEl.textContent = data.message;
+                messageEl.style.color = 'green';
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1000);
+            } else {
+                messageEl.textContent = data.error || 'Login failed';
+                messageEl.style.color = 'red';
+            }
+        } catch (parseError) {
+            console.error("Server sent invalid JSON:", text);
+            messageEl.textContent = 'Server response error (Check Console)';
+            messageEl.style.color = 'red';
+        }
+
+    } catch (err) {
+        console.error("Fetch Error:", err);
+        messageEl.textContent = 'Connection failed';
+        messageEl.style.color = 'red';
+    }
+});
+    </script>
+</body>
+</html>
+
