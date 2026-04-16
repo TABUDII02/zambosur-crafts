@@ -1,0 +1,77 @@
+/* Container - was .profile-trigger */
+.user-profile-hidden {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The inner container - was .avatar-container */
+.profile-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    transition: background 0.3s;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+/* The name display - matches your text-wrapper-2 class */
+#userNameDisplay {
+    font-size: 14px;
+    font-weight: 500;
+    color: #4a5568;
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* The actual dropdown box */
+.profile-dropdown {
+    display: none; 
+    position: absolute;
+    top: 100%; 
+    right: 0;
+    background-color: #ffffff; 
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.15); 
+    border-radius: 8px;
+    padding: 10px 0;
+    z-index: 1000;
+    border: 1px solid #eee; 
+}
+
+/* Styling the links inside - using .profile-option */
+.profile-option {
+    color: #333 !important; /* Force dark text for readability */
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.profile-option:hover {
+    background-color: #f5f5f5; 
+    color: #000 !important;
+}
+
+/* Show the dropdown when hovering */
+.user-profile-hidden:hover .profile-dropdown {
+    display: block;
+}
+
+.user-profile-hidden:hover .profile-container {
+    background-color: #f7fafc;
+}

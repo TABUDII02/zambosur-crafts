@@ -1,0 +1,137 @@
+/* --- Global Variables for Easy Changes --- */
+:root {
+    --zam-maroon: #800000;
+    --zam-gold: #DAA520;
+    --zam-text: #2d2d2d;
+    --zam-bg: #fdfaf5; /* Warm, premium cream background */
+    --zam-white: #ffffff;
+    --zam-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* Layout Container */
+.products-layout {
+    display: flex;
+    max-width: 1440px;
+    margin: 40px auto; /* Reduced margin slightly */
+    padding: 0 20px;
+    gap: 40px; /* Increased gap for a "breathable" luxury feel */
+}
+
+/* Sidebar Styling - Premium Look */
+.sidebar-categories {
+    flex: 0 0 260px;
+    background: var(--zam-white);
+    padding: 25px;
+    border-radius: 15px;
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+    box-shadow: var(--zam-shadow);
+}
+
+.sidebar-categories h3 {
+    border-bottom: 2px solid var(--zam-gold); /* Changed Red to Gold */
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif; /* Or any elegant serif */
+    color: var(--zam-maroon);
+}
+
+.sidebar-categories li {
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    font-weight: 500;
+    color: #555;
+}
+
+.sidebar-categories li:hover, 
+.sidebar-categories li.active {
+    background: var(--zam-maroon); /* Changed Grey to Maroon */
+    color: var(--zam-white);
+    transform: translateX(5px);
+}
+
+/* Product Card - Boutique Style */
+.product-card {
+    background: var(--zam-white);
+    border: none; /* Removed the thin grey border */
+    border-radius: 18px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+.product-card img {
+    width: 100%;
+    height: 250px; /* Made slightly taller */
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.05); /* Subtle zoom on hover */
+}
+
+.card-info {
+    padding: 20px;
+    text-align: center; /* Centered text looks more premium for crafts */
+}
+
+.card-info h4 { 
+    margin: 0 0 8px 0; 
+    font-size: 1.1rem;
+    color: var(--zam-text);
+}
+
+.price { 
+    display: block; 
+    font-weight: 700; 
+    color: var(--zam-maroon); /* Changed Red to Maroon */
+    font-size: 1.2rem;
+    margin-bottom: 15px; 
+}
+
+/* Add to Cart Button - "ZamboSur" Style */
+.add-to-cart {
+    width: 100%;
+    padding: 12px;
+    background: var(--zam-maroon); /* Changed Neon Green to Maroon */
+    color: var(--zam-white);
+    border: 2px solid var(--zam-maroon);
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.add-to-cart:hover {
+    background: transparent;
+    color: var(--zam-maroon);
+}
+
+.quick-view-modal {
+    display: none; /* Controlled by JS */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 9999; /* Ensure this is higher than the navbar (1000) */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Ensure the modal is visible when display is flex */
+.quick-view-modal.active {
+    display: flex;
+}

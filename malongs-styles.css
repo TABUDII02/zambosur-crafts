@@ -1,0 +1,621 @@
+:root {
+    --primary: #800000; /* Deep Maroon */
+    --secondary: #DAA520; /* Heritage Gold */
+    --accent: #2d2d2d;
+    --bg-light: #fdfaf5; /* Warm cream */
+    --white: #ffffff;
+    --shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--accent);
+    margin: 0;
+}
+
+/* --- Hero Section --- */
+.malong-hero {
+    position: relative;
+    height: 400px;
+    background: url('hero-pattern.jpg'), linear-gradient(rgba(128,0,0,0.8), rgba(0,0,0,0.6));
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+}
+
+.pre-title {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.9rem;
+    color: var(--secondary);
+}
+
+.malong-title {
+    font-size: 3.5rem;
+    margin: 10px 0;
+}
+
+.malong-title span {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--secondary);
+}
+
+/* --- Layout --- */
+.products-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 40px;
+    max-width: 1400px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+/* --- Sidebar Styling --- */
+.malong-sidebar {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    height: fit-content;
+}
+
+.malong-sidebar h3 {
+    border-bottom: 2px solid var(--secondary);
+    padding-bottom: 10px;
+    font-size: 1.2rem;
+    color: var(--primary);
+}
+
+#malongCategoryList li {
+    list-style: none;
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px; /* Gives it a button-like feel */
+    color: var(--accent); /* Default dark text */
+    margin-bottom: 5px;
+}
+
+/* Hover and Active State Fix */
+#malongCategoryList li:hover, 
+#malongCategoryList li.active {
+    background-color: var(--primary) !important; /* Force the Maroon background */
+    color: var(--white) !important; /* Force the text to be white so it doesn't disappear */
+    padding-left: 20px; /* Slight indent animation */
+    font-weight: 600;
+}
+
+/* --- Product Cards --- */
+.malong-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.malong-card {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.malong-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.product-image {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.malong-card:hover .product-image img {
+    transform: scale(1.1);
+}
+
+.best-seller-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: var(--secondary);
+    color: var(--white);
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.card-info {
+    padding: 20px;
+}
+
+.card-info h4 {
+    margin: 0 0 10px;
+    font-size: 1.1rem;
+    color: var(--accent);
+}
+
+.card-info .price {
+    display: block;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+/* --- Buttons --- */
+.card-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.quick-view-btn {
+    background: #eee;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    flex: 1;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.add-to-cart-btn {
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    flex: 2;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.add-to-cart-btn:hover {
+    background: var(--accent);
+}
+
+/* --- Quick View Modal --- */
+.quick-view-modal {
+    display: none;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: var(--white);
+    width: 80%;
+    max-width: 900px;
+    border-radius: 25px;
+    overflow: hidden;
+    position: relative;
+}
+
+.modal-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.modal-details {
+    padding: 40px;
+    background: var(--bg-light);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .products-layout {
+        grid-template-columns: 1fr;
+    }
+    .malong-sidebar {
+        display: none; /* Hide sidebar on mobile or move to a top-drawer */
+    }
+}
+
+:root {
+    --nav-bg: #3C495A;
+   --nav-accent: #DAA520; /* Gold looks better on dark slate than Maroon */
+    --nav-maroon: #800000; /* Keeping your Royal Maroon for highlights */
+    --nav-text: #FFFFFF;    /* Changed to White for readability */
+    --nav-gold: #DAA520;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: var(--nav-bg); /* Uses the slate color */
+    backdrop-filter: blur(10px); 
+    border-bottom: 1px solid rgba(255,255,255,0.1); /* Lighter border for dark bg */
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+/* Scrolled state (optional: trigger via JS on scroll) */
+.navbar.scrolled {
+    height: 65px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+    max-width: 1400px;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* --- Logo Styling --- */
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-decoration: none;
+   color: var(--nav-text); /* Now White */
+    letter-spacing: -1px;
+}
+
+.nav-logo span {
+   color: var(--nav-gold); /* Gold stands out beautifully on Slate */
+    font-weight: 300;
+    margin-left: 2px;
+}
+
+/* --- Navigation Links --- */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+  color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover, 
+.nav-links a.active {
+    color: var(--nav-gold); /* Highlights in Gold on hover */
+}
+
+/* Underline Animation */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--nav-gold);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after, 
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: var(--nav-accent);
+}
+
+/* --- Action Area (Cart/User) --- */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cart-icon {
+    color: var(--nav-text); /* White icon */
+    position: relative;
+    cursor: pointer;
+    font-size: 1.3rem;
+}
+
+.badge {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+   background: var(--nav-maroon); /* Maroon used for the badge notification */
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+/* --- Profile Dropdown --- */
+.profile-trigger {
+    position: relative;
+    cursor: pointer;
+}
+
+.avatar {
+    width: 35px;
+    height: 35px;
+    background: #eee;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    background: white;
+    min-width: 150px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    display: none; /* Toggle with JS */
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.profile-trigger:hover .profile-dropdown {
+    display: flex;
+}
+
+.profile-dropdown a {
+    padding: 12px 20px;
+    text-decoration: none;
+    color: var(--nav-text);
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.profile-dropdown a:hover {
+    background: #f8f8f8;
+    color: var(--nav-accent);
+}
+
+/* --- Mobile Menu Burger --- */
+.menu-toggle {
+    display: none; /* Hidden on desktop */
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 2px;
+    background: var(--nav-text);
+    transition: 0.3s;
+}
+
+/* --- Responsive Layout --- */
+@media (max-width: 992px) {
+    .nav-links {
+        display: none; /* You would typically show a mobile drawer here */
+    }
+    
+    .menu-toggle {
+        display: flex;
+    }
+}
+
+/* Filter Bar Styling */
+.malong-filters {
+    background: var(--white);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1400px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+.filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-group select {
+    padding: 8px 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    outline: none;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* View Toggle Buttons */
+.view-btn {
+    background: #f0f0f0;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.view-btn.active {
+    background: var(--primary);
+    color: white;
+}
+
+/* List View Layout Modification */
+.malong-grid.list-view {
+    grid-template-columns: 1fr; /* Stack items vertically */
+}
+
+.malong-grid.list-view .malong-card {
+    display: flex;
+    height: 200px;
+}
+
+.malong-grid.list-view .product-image {
+    width: 300px;
+    height: 100%;
+}
+
+.malong-grid.list-view .card-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    padding: 30px;
+}
+
+/* Ensure the grid transitions smoothly */
+#malongGrid {
+    display: grid;
+    transition: all 0.3s ease;
+}
+
+/* List View Layout: Horizontal Cards */
+#malongGrid.list-view {
+    grid-template-columns: 1fr;
+}
+
+#malongGrid.list-view .malong-card {
+    display: flex;
+    flex-direction: row;
+    height: 250px;
+    align-items: center;
+}
+
+#malongGrid.list-view .product-image {
+    width: 300px;
+    height: 100%;
+}
+
+.quick-view-modal {
+    display: none; /* Controlled by JS */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 9999; /* Ensure this is higher than the navbar (1000) */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Ensure the modal is visible when display is flex */
+.quick-view-modal.active {
+    display: flex;
+}
+
+.auth-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-modal {
+    background: #f0f0f0;
+    width: 800px;
+    height: 500px;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+}
+
+.auth-container { display: flex; width: 100%; }
+
+
+.auth-branding {
+    flex: 1;
+    background-color: #5d6771; /* Matches your image grey */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.branding-text {
+    font-family: 'Cursive', sans-serif;
+    color: white;
+    font-size: 2rem;
+}
+
+.auth-form-side {
+    flex: 1;
+    padding: 40px;
+    background: #e0e0e0;
+}
+
+.form-title { font-size: 1.8rem; margin-bottom: 20px; }
+
+.input-group { margin-bottom: 15px; }
+.input-group label { display: block; margin-bottom: 5px; font-size: 0.9rem; }
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #999;
+    border-radius: 10px;
+}
+
+.continue-btn {
+    width: 100%;
+    padding: 12px;
+    background: #00ff00; /* Neon green */
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.social-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background: white;
+    cursor: pointer;
+}
+
+.social-btn.facebook { background: #4267B2; color: white; border: none; }
+
+.hidden { display: none; }
+.close-btn { position: absolute; right: 15px; top: 15px; border: none; background: none; cursor: pointer; font-weight: bold; }

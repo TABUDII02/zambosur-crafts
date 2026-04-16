@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wooden Miniatures - ZamboSur Crafts</title>
+    
+    <link rel="stylesheet" href="products-styles.css">
+    <link rel="stylesheet" href="malongs-styles.css"> 
+     <link rel="stylesheet" href="profile-dropdown.css">
+</head>
+<body>
+
+    <style>
+       .malong-sidebar {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    height: fit-content;
+}
+
+.malong-sidebar h3 {
+    border-bottom: 2px solid var(--secondary);
+    padding-bottom: 10px;
+    font-size: 1.2rem;
+    color: var(--primary);
+}
+
+#miniatureCategoryList li {
+    list-style: none;
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px; /* Gives it a button-like feel */
+    color: var(--accent); /* Default dark text */
+    margin-bottom: 5px;
+}
+
+/* Hover and Active State Fix */
+#miniatureCategoryList li:hover, 
+#miniatureCategoryList li.active {
+    background-color: var(--primary) !important; /* Force the Maroon background */
+    color: var(--white) !important; /* Force the text to be white so it doesn't disappear */
+    padding-left: 20px; /* Slight indent animation */
+    font-weight: 600;
+}
+
+/* --- MODERN DROPDOWN DESIGN --- */
+
+/* Sidebar Select (Wood Type) & Header Select (Sort By) */
+.filter-select, 
+.sort-dropdown {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 0.95rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    color: var(--accent);
+    cursor: pointer;
+    appearance: none; /* Removes default arrow */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23800000' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+/* Specific styling for the header Sort dropdown (usually smaller) */
+.sort-dropdown {
+    width: auto;
+    min-width: 180px;
+    background-color: var(--white);
+    border: 1.5px solid #eee;
+}
+
+/* Hover & Focus States */
+.filter-select:hover, 
+.sort-dropdown:hover {
+    border-color: var(--primary);
+    background-color: var(--white);
+}
+
+.filter-select:focus, 
+.sort-dropdown:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.1); /* Subtle maroon glow */
+}
+
+/* --- PRICE SLIDER REFINEMENT --- */
+
+.price-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    outline: none;
+    margin: 20px 0;
+}
+
+.price-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--primary);
+    cursor: pointer;
+    border-radius: 50%;
+    transition: transform 0.2s;
+}
+
+.price-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+/* --- SIDEBAR SPACING --- */
+
+.sidebar-block {
+    margin-bottom: 25px;
+}
+
+.sidebar-block h3 {
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+/* View Toggle Buttons */
+.view-btn {
+    background: #f0f0f0;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.view-btn.active {
+    background: var(--primary);
+    color: white;
+}
+</style>
+    <div class="landing-page">
+        <nav class="navbar" aria-label="Main navigation">
+            <div class="nav-container">
+                <a href="index.html" class="nav-logo">ZamboSur<span>Crafts</span></a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="allproducts-dashboard.html">All Products</a>
+                    <a href="malongs.html">Malongs</a>
+                    <a href="pillowcase.html">Pillowcases</a>
+                    <a href="baskets.html">Baskets</a>
+                    <a href="weaving.html">Weaving</a>
+                    <a href="modern-miniature.html" class="active">Miniatures</a>
+                </div>
+                
+                 <div class="nav-actions">
+                    <div class="cart-icon" onclick="location.href='cart.html'">
+                        <span class="icon">🛒</span>
+                        <span id="cartCount" class="badge">0</span>
+                    </div>
+                
+                    <div id="userProfile" class="user-profile-hidden">
+                        <div class="profile-container">
+                            <div class="profile-icon">👤</div>
+                            <span id="userNameDisplay" class="text-wrapper-2">Hello, User</span>
+                            <div class="profile-dropdown">
+                                <a href="profile.html" class="text-wrapper-2 profile-option">My Profile</a>
+                                <a href="javascript:void(0)" class="text-wrapper-2 profile-option">My Orders</a>
+                                <a href="javascript:void(0)" id="logoutBtn" class="text-wrapper-2 profile-option">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section class="malong-hero">
+            <div class="malong-hero-content">
+                <p class="pre-title">Artisan Woodwork</p>
+                <h1 class="malong-title">Wooden <span class="highlight">Miniatures</span></h1>
+                <p class="malong-subtitle">Exquisite hand-carved replicas from local Zamboanga artisans</p>
+            </div>
+        </section>
+
+        <section class="malong-products-section">
+            <div class="products-layout">
+                
+                <aside class="malong-sidebar">
+                    <div class="sidebar-block">
+                        <h3>Model Categories</h3>
+                        <ul id="miniatureCategoryList" class="category-menu">
+                            <li class="active" data-type="all">All Miniatures</li>
+                            <li data-type="jeepney">Jeepneys</li>
+                            <li data-type="tricycle">Tricycles</li>
+                            <li data-type="vinta">Vintas</li>
+                            <li data-type="landmark">Landmarks</li>
+                            <li data-type="animal">Animals</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-block">
+                        <h3>Wood Type</h3>
+                        <select id="colorFilter" class="filter-select">
+                            <option value="all">All Woods</option>
+                            <option value="narra">Narra</option>
+                            <option value="mahogany">Mahogany</option>
+                            <option value="bamboo">Bamboo</option>
+                            <option value="acacia">Acacia</option>
+                        </select>
+                    </div>
+
+                    <div class="sidebar-block">
+                        <h3>Price Range</h3>
+                        <input type="range" id="priceRange" min="0" max="5000" value="5000" class="price-slider">
+                        <div class="price-labels">
+                            <span>Php 0</span>
+                            <span id="priceValue">Php 5,000</span>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-block">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="bestSellerOnly">
+                            <span class="checkmark"></span>
+                            Show Top Picks Only
+                        </label>
+                    </div>
+                </aside>
+
+                <main class="products-display">
+                    <header class="display-header">
+                        <div class="header-left">
+                            <h2 id="miniatureCategoryTitle">All Miniatures</h2>
+                            <p class="results-count"><span id="productCount">0</span> models found</p>
+                        </div>
+                        <div class="header-right">
+                            <select id="malongSort" class="sort-dropdown">
+                                <option value="default">Sort by: Default</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="name">Name: A-Z</option>
+                            </select>
+                        </div>
+                    </header>
+
+                    <div class="malong-grid" id="miniatureGrid">
+                        </div>
+
+                    <div class="loading-state" id="loadingState">
+                        <div class="spinner"></div>
+                        <p>Loading collection...</p>
+                    </div>
+
+                    <div class="empty-state" id="emptyState" style="display: none;">
+                        <h3>No Miniatures Found</h3>
+                        <p>Try adjusting your filters or category.</p>
+                    </div>
+                </main>
+            </div>
+        </section>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div class="quick-view-modal" id="quickViewModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modalProductImage" src="" alt="Pillowcase Product">
+                </div>
+                <div class="modal-details">
+                    <h3 id="modalProductName"></h3>
+                    <p id="modalProductDesc"></p>
+                    <div class="modal-price" id="modalProductPrice"></div>
+                    <div class="modal-badges">
+                        <span class="badge" id="modalProductBadge"></span>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="authOverlay" class="auth-overlay">
+  <div class="auth-modal">
+    <button class="close-btn" id="closeAuth">X</button>
+    
+    <div class="auth-container">
+      <div class="auth-branding">
+        <h2 class="branding-text">ZamboSur Crafts</h2>
+      </div>
+
+      <div class="auth-form-side">
+        <div id="signInForm" class="auth-form">
+          <p class="back-link">← Back to Sign up</p>
+          <h2 class="form-title">Sign In</h2>
+          <div class="input-group">
+            <label>Email Address</label>
+            <input type="email" id="loginEmail">
+          </div>
+          <div class="input-group">
+            <label>Password</label>
+            <input type="password" id="loginPass">
+          </div>
+          <button class="continue-btn">Continue</button>
+          <div class="separator">or</div>
+          <button class="social-btn google"><img src="google-icon.png" alt=""> Sign in with Google</button>
+          <button class="social-btn facebook"><img src="fb-icon.png" alt=""> Sign in with Facebook</button>
+          <p class="footer-link">Forgot password ?</p>
+        </div>
+
+        <div id="signUpForm" class="auth-form hidden">
+          <h2 class="form-title">Sign up</h2>
+          <div class="input-group">
+            <label>Fullname</label>
+            <input type="text" id="regName">
+          </div>
+          <div class="input-group">
+            <label>Email Address</label>
+            <input type="email" id="regEmail">
+          </div>
+          <div class="input-group">
+            <label>Password</label>
+            <input type="password" id="regPass">
+          </div>
+          <div class="input-group">
+            <label>Confirm Password</label>
+            <input type="password" id="regPassConfirm">
+          </div>
+          <button class="continue-btn">Continue</button>
+          <div class="separator">or</div>
+          <button class="social-btn google">Sign in with Google</button>
+          <button class="social-btn facebook">Sign in with Facebook</button>
+          <p class="footer-link">Already have an account? <span id="toSignIn">Sign In →</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <script src="script.js"></script>
+    <script src="modern-miniature-script.js"></script>
+</body>
+</html>

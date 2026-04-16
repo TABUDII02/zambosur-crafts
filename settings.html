@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | ZamboSur Crafts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="profile-style.css">
+    <link rel="stylesheet" href="malongs-styles.css">
+</head>
+<body>
+
+    <nav class="navbar" id="mainNav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">ZamboSur<span>Crafts</span></a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="allproducts-dashboard.html">Products</a>
+                <a href="#about-us">About Us</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="profile-page-wrapper">
+        <div class="profile-container">
+            <aside class="profile-sidebar">
+                <div class="avatar-circle" id="avatarIcon">?</div>
+                <h2 id="sideName">Loading...</h2>
+                <p id="sideEmail">---</p>
+                <nav class="side-menu">
+                    <p class="menu-label">My Account</p>
+                    <a href="profile.html"><i class="fas fa-user"></i> Personal Information</a>
+                    <a href="security.html" ><i class="fas fa-shield-alt"></i> Account Security</a>
+                    <a href="addresses.html"><i class="fas fa-map-marker-alt"></i> Address Book</a>
+                    
+                    <p class="menu-label">Orders & Activity</p>
+                    <a href="orders.html"><i class="fas fa-box"></i> Order History</a>
+                    <a href="wishlist.html"><i class="fas fa-heart"></i> Wishlist</a>
+                    <a href="cart.html"><i class="fas fa-shopping-cart"></i>Shopping Cart</a>
+                    
+                    <p class="menu-label">Preferences</p>
+                    <a href="settings.html"  class="active"><i class="fas fa-cog"></i> Settings</a>
+                    <hr>
+                    <a href="#" class="logout-link" id="logoutTrigger"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </nav>
+            </aside>
+
+            <main class="profile-main-content">
+                <header class="content-header">
+                    <h1>Account Settings</h1>
+                </header>
+
+                <div class="settings-section">
+                    <h3 class="settings-title">Notifications</h3>
+                    <div class="setting-item">
+                        <div class="setting-text">
+                            <strong>Email Notifications</strong>
+                            <p>Receive updates about your orders and promos.</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="emailNotif" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-text">
+                            <strong>SMS Updates</strong>
+                            <p>Get delivery tracking numbers via text message.</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="smsNotif">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h3 class="settings-title">Preferences</h3>
+                    <div class="setting-item">
+                        <div class="setting-text">
+                            <strong>Language</strong>
+                        </div>
+                        <select class="settings-select" id="langPref">
+                            <option value="en">English</option>
+                            <option value="tl">Tagalog</option>
+                            <option value="cb">Cebuano</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="settings-footer">
+                    <button class="save-settings-btn" id="saveSettings">Save Changes</button>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="profile-logic.js"></script>
+    <script src="settings-logic.js"></script>
+</body>
+</html>

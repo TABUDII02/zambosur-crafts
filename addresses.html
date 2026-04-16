@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Book | ZamboSur Crafts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="profile-style.css">
+    <link rel="stylesheet" href="malongs-styles.css">
+</head>
+<body>
+
+
+
+    <nav class="navbar" id="mainNav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">ZamboSur<span>Crafts</span></a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="allproducts-dashboard.html">Products</a>
+                <a href="#about-us">About Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="profile-page-wrapper">
+        <div class="profile-container">
+            <aside class="profile-sidebar">
+                <div class="avatar-circle" id="avatarIcon">?</div>
+                <h2 id="sideName">Loading...</h2>
+                <p id="sideEmail">---</p>
+                
+                 <nav class="side-menu">
+                    <p class="menu-label">My Account</p>
+                    <a href="profile.html"><i class="fas fa-user"></i> Personal Information</a>
+                    <a href="security.html" ><i class="fas fa-shield-alt"></i> Account Security</a>
+                    <a href="addresses.html"  class="active"><i class="fas fa-map-marker-alt"></i> Address Book</a>
+                    
+                    <p class="menu-label">Orders & Activity</p>
+                    <a href="orders.html"><i class="fas fa-box"></i> Order History</a>
+                    <a href="wishlist.html"><i class="fas fa-heart"></i> Wishlist</a>
+                    <a href="cart.html"><i class="fas fa-shopping-cart"></i>Shopping Cart</a>
+                    
+                    <p class="menu-label">Preferences</p>
+                    <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                    <hr>
+                    <a href="#" class="logout-link" id="logoutTrigger"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </nav>
+            </aside>
+
+            <main class="profile-main-content">
+    <header class="content-header">
+        <h1>Address Book</h1>
+        <button class="edit-profile-btn" id="addAddressBtn">
+            <i class="fas fa-plus"></i> Add New Address
+        </button>
+    </header>
+
+    <section class="address-section">
+        <h3 class="section-title"><i class="fas fa-star"></i> Default Address</h3>
+        <div class="address-grid" id="defaultAddressList">
+            </div>
+    </section>
+
+    <section class="address-section">
+        <h3 class="section-title"><i class="fas fa-truck"></i> Shipping Addresses</h3>
+        <div class="address-grid" id="shippingAddressList">
+            </div>
+    </section>
+
+    <section class="address-section">
+        <h3 class="section-title"><i class="fas fa-file-invoice-dollar"></i> Billing Addresses</h3>
+        <div class="address-grid" id="billingAddressList">
+            </div>
+    </section>
+</main>
+        </div>
+    </div>
+
+    <div id="addressModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3 id="modalTitle">Add New Address</h3>
+        <form id="addressForm">
+            <input type="hidden" id="addressId">
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Full Name (Receiver)</label>
+                    <input type="text" id="addrReceiver" placeholder="e.g. Juan Dela Cruz" required>
+                </div>
+                <div class="form-group">
+                    <label>Label</label>
+                    <input type="text" id="addrLabel" placeholder="e.g. Home, Office" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="text" id="addrPhone" placeholder="09123456789" required>
+            </div>
+
+            <div class="form-group">
+                <label>Street Name, Building, House No.</label>
+                <input type="text" id="addrStreet" placeholder="e.g. 123 Rizal St." required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Barangay</label>
+                    <input type="text" id="addrBarangay" placeholder="e.g. San Jose" required>
+                </div>
+                <div class="form-group">
+                    <label>City / Municipality</label>
+                    <input type="text" id="addrCity" placeholder="e.g. Pagadian City" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Province</label>
+                    <input type="text" id="addrProvince" value="Zamboanga del Sur" required>
+                </div>
+                <div class="form-group">
+                    <label>Postal Code</label>
+                    <input type="text" id="addrZip" placeholder="7016" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Address Type</label>
+                <select id="addrType" class="settings-select">
+                    <option value="shipping">Shipping Address</option>
+                    <option value="billing">Billing Address</option>
+                </select>
+            </div>
+
+            <div class="form-checkbox">
+                <input type="checkbox" id="isDefault">
+                <label for="isDefault">Set as Default Address</label>
+            </div>
+
+            <button type="submit" class="update-btn">Save Address</button>
+        </form>
+    </div>
+</div>
+
+    <script src="profile-logic.js"></script>
+    <script src="address-logic.js"></script>
+</body>
+</html>

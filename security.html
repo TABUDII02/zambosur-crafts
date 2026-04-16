@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Security | ZamboSur Crafts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="malongs-styles.css">
+    <link rel="stylesheet" href="profile-style.css">
+</head>
+<body>
+
+    <nav class="navbar" id="mainNav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">ZamboSur<span>Crafts</span></a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="allproducts-dashboard.html">Products</a>
+                <a href="#about-us">About Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="profile-page-wrapper">
+        <div class="profile-container">
+            <aside class="profile-sidebar">
+                <div class="avatar-circle" id="avatarIcon">?</div>
+                <h2 id="sideName">Loading...</h2>
+                <p id="sideEmail">---</p>
+                
+                <nav class="side-menu">
+                    <p class="menu-label">My Account</p>
+                    <a href="profile.html"><i class="fas fa-user"></i> Personal Information</a>
+                    <a href="security.html" class="active"><i class="fas fa-shield-alt"></i> Account Security</a>
+                    <a href="addresses.html"><i class="fas fa-map-marker-alt"></i> Address Book</a>
+                    
+                    <p class="menu-label">Orders & Activity</p>
+                    <a href="orders.html"><i class="fas fa-box"></i> Order History</a>
+                    <a href="wishlist.html"><i class="fas fa-heart"></i> Wishlist</a>
+                    <a href="cart.html"><i class="fas fa-shopping-cart"></i>Shopping Cart</a>
+                    
+                    <p class="menu-label">Preferences</p>
+                    <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                    <hr>
+                    <a href="#" class="logout-link" id="logoutTrigger"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </nav>
+            </aside>
+
+            <main class="profile-main-content">
+                <header class="content-header">
+                    <h1>Account Security</h1>
+                </header>
+
+                <section class="security-section">
+                    <h3>Change Password</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px;">
+                        Ensure your account is using a long, random password to stay secure.
+                    </p>
+
+                    <form id="passwordChangeForm" class="security-form">
+                        <div class="form-group">
+                            <label for="currentPassword">Current Password</label>
+                            <input type="password" id="currentPassword" name="current_password" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newPassword">New Password</label>
+                            <input type="password" id="newPassword" name="new_password" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm New Password</label>
+                            <input type="password" id="confirmPassword" name="confirm_password" required>
+                        </div>
+
+                        <button type="submit" class="update-btn">Update Password</button>
+                    </form>
+                </section>
+
+                <hr style="margin: 40px 0; border: 0; border-top: 1px solid var(--border-light);">
+
+                <section class="security-section">
+                    <h3>Account Deletion</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">
+                        Once you delete your account, there is no going back. Please be certain.
+                    </p>
+                    <button class="delete-account-btn">Delete Account</button>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="profile-logic.js"></script>
+    <script src="security-logic.js"></script>
+</body>
+</html>

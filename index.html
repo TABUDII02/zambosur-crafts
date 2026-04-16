@@ -1,0 +1,995 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="ZamboSur Crafts - Handcrafted products from Zamboanga del Sur featuring traditional weaving, baskets, and wooden miniatures"
+    />
+    <title>ZamboSur Crafts - Handcrafted Products from Zamboanga del Sur</title>
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  </head>
+  <body>
+    <div class="landing-page">
+      <main class="main">
+        <div class="rectangle"></div>
+        <div class="div"></div>
+        <div class="frame">
+          <div class="frame-wrapper">
+            <div class="div-wrapper">
+              <h1 class="text-wrapper">ZamboSur Crafts</h1>
+            </div>
+          </div>
+        </div>
+        <nav class="navbar" aria-label="Main navigation">
+          <a href="#bags" class="text-wrapper-2">Bags</a>
+          <a href="#basket" class="text-wrapper-2">Basket</a>
+          <a href="#home-decore" class="text-wrapper-2"
+            >&nbsp;&nbsp;&nbsp;&nbsp;Home Decore</a
+          >
+          <a href="#wood-craft" class="text-wrapper-2">Wood Craft</a>
+          <a href="#mats" class="text-wrapper-2">Mats</a>
+          <a href="#best-sellers-list" class="text-wrapper-2">Best Seller</a>
+          <a href="#about-us" class="text-wrapper-2">About Us</a>
+          <div id="userProfile" class="user-profile-hidden">
+            <div class="profile-container">
+              <div class="profile-icon">👤</div>
+              <span id="userNameDisplay" class="text-wrapper-2"
+                >Hello, User</span
+              >
+              <div class="profile-dropdown">
+                <a href="profile.html" class="text-wrapper-2 profile-option"
+                  >My Profile</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  class="text-wrapper-2 profile-option"
+                  >My Orders</a
+                >
+                <a
+                  href="javascript:void(0)"
+                  id="logoutBtn"
+                  class="text-wrapper-2 profile-option"
+                  >Logout</a
+                >
+              </div>
+            </div>
+          </div>
+        </nav>
+        <img class="line" src="images/remove.png" alt="" role="presentation" />
+        <img
+          class="search"
+          src="images/icons8-search-25.png"
+          alt="Search icon"
+        />
+        <img class="img" src="images/remove.png" alt="" role="presentation" />
+        <label for="search-input" class="p">What are you looking for?</label>
+        <section class="slider" aria-label="Featured products carousel">
+          <div class="slide-container">
+            <article class="slide">
+              <img
+                class="image"
+                src="images/slide14.jpg"
+                alt="Featured craft product showcase"
+              />
+            </article>
+            <article class="image-wrapper">
+              <img
+                class="image-2"
+                src="images/slide14.jpg"
+                alt="Featured craft product showcase"
+              />
+            </article>
+            <article class="image-wrapper">
+              <img
+                class="image-3"
+                src="images/slide14.jpg"
+                alt="Featured craft product showcase"
+              />
+            </article>
+          </div>
+          <button class="arrows" aria-label="Previous slide">
+            <img
+              class="chevron-right"
+              src="images/icons8-less-than-80.png"
+              alt=""
+            />
+          </button>
+          <button class="chevron-right-wrapper" aria-label="Next slide">
+            <img
+              class="chevron-right-2"
+              src="images/icons8-greater-than-80.png"
+              alt=""
+            />
+          </button>
+          <div
+            class="navigation"
+            role="tablist"
+            aria-label="Carousel navigation"
+          >
+            <button
+              class="ellipse"
+              role="tab"
+              aria-selected="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              class="ellipse-2"
+              role="tab"
+              aria-selected="false"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              class="ellipse-2"
+              role="tab"
+              aria-selected="false"
+              aria-label="Slide 3"
+            ></button>
+          </div>
+        </section>
+        <div class="rectangle-2"></div>
+        <nav class="frame-2" aria-label="Product categories">
+          <a href="malongs.html"
+            ><img
+              class="ellipse-3"
+              src="images/malong_tinalak.jpg"
+              alt="Malongs category"
+          /></a>
+          <a href="pillowcase.html"
+            ><img
+              class="ellipse-4"
+              src="images/silk_pillowcase.jpg"
+              alt="Pillowcase category"
+          /></a>
+          <a href="baskets.html"
+            ><img
+              class="ellipse-4"
+              src="images/picnic.jpg"
+              alt="Baskets category"
+          /></a>
+          <a href="weaving.html"
+            ><img
+              class="ellipse-4"
+              src="images/banig.jpg"
+              alt="Weaving category"
+          /></a>
+          <a href="modern-miniature.html"
+            ><img
+              class="ellipse-5"
+              src="images/boat.jpg"
+              alt="Wooden Miniature category"
+          /></a>
+        </nav>
+        <div class="text-wrapper-3">Malongs</div>
+        <div class="text-wrapper-4">Pillowcase</div>
+        <div class="text-wrapper-5">Baskets</div>
+        <div class="text-wrapper-6">Weaving</div>
+        <div class="text-wrapper-7">Wooden Miniature</div>
+        <header class="header">
+          <button class="humberger-menu" aria-label="Open menu" aria-expanded="false">
+            <img class="line-2" src="images/line-solid-svgrepo-com.svg" alt="" />
+            <img class="line-3" src="images/line-solid-svgrepo-com.svg" alt="" />
+            <img class="line-4" src="images/line-solid-svgrepo-com.svg" alt="" />
+          </button>
+
+          <nav class="mobile-menu" id="mobileMenu">
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li>
+                <a href="allproducts-dashboard.html">Shop All Products</a>
+              </li>
+              <li><a href="#best-seller">Best Sellers</a></li>
+              <li><a href="#about-us">About ZamboSur</a></li>
+              <li><a href="#contact">Contact Support</a></li>
+              <li>
+                <hr
+                  style="border: 0; border-top: 1px solid #eee; margin: 10px 0"
+                />
+              </li>
+              <li>
+                <a
+                  href="javascript:void(0)"
+                  onclick="openAuthModal('signin')"
+                  style="font-weight: bold; color: #d9534f"
+                  >Account / Login</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </header>
+
+        <div class="img-wrapper-1">
+          <img
+            class="rectangle-3"
+            src="images/2-2-ZAM-CITY-1.jpg"
+            alt="Explore product 1"
+          />
+        </div>
+
+        <div class="img-wrapper">
+          <img
+            class="rectangle-3"
+            src="images/2-2-ZAM-CITY-1.jpg"
+            alt="Explore product 2"
+          />
+        </div>
+        <div class="frame-3">
+          <img
+            class="rectangle-3"
+            src="images/2-2-ZAM-CITY-1.jpg"
+            alt="Explore product 3"
+          />
+        </div>
+        <div class="frame-4">
+          <img
+            class="rectangle-3"
+            src="images/2-2-ZAM-CITY-1.jpg"
+            alt="Explore product 4"
+          />
+        </div>
+        <div class="frame-5">
+          <img
+            class="rectangle-3"
+            src="images/2-2-ZAM-CITY-1.jpg"
+            alt="Explore product 5"
+          />
+        </div>
+        <div class="frame-6">
+          <img
+            class="rectangle-3"
+            src="images/2-2-ZAM-CITY-1.jpg"
+            alt="Explore product 6"
+          />
+        </div>
+        <h2 class="explore-products">
+          <span class="span">Explore&nbsp;&nbsp;</span>
+          <span class="text-wrapper-8">Products</span>
+        </h2>
+      </main>
+      <section class="desktop" aria-labelledby="best-sellers-heading">
+        <h2 id="best-sellers-heading" class="best-sellers">
+          <span class="span">Best </span>
+          <span class="text-wrapper-8">Sellers</span>
+        </h2>
+        <div id="best-sellers-list" class="best-sellers-list">
+          <!-- Cards are injected by JavaScript from the database API -->
+        </div>
+        <a
+          href="allproducts-dashboard.html"
+          id="seeAllLink"
+          class="rectangle-5"
+          aria-label="See all products"
+        ></a>
+        <span class="text-wrapper-13">SEE ALL</span>
+        <section class="frame-20" aria-label="Store features">
+          <div class="rectangle-6"></div>
+          <div class="rectangle-7"></div>
+          <div class="rectangle-7"></div>
+          <div class="rectangle-8"></div>
+          <div class="text-wrapper-14">Support Local Brands</div>
+          <div class="free-return-exchange">Free Return &amp; Exchange</div>
+          <div class="text-wrapper-15">Support Local Brands</div>
+          <div class="text-wrapper-16">Support Local Brands</div>
+          <img
+            class="return-purchase"
+            src="img/return-purchase-3.png"
+            alt="Return and exchange icon"
+          />
+          <img
+            class="return-purchase-2"
+            src="img/return-purchase-2.png"
+            alt="Support local brands icon"
+          />
+          <img
+            class="return-purchase-3"
+            src="img/return-purchase.png"
+            alt="Support local brands icon"
+          />
+          <img
+            class="romance"
+            src="img/romance.png"
+            alt="Support local brands icon"
+          />
+        </section>
+      </section>
+      <section class="desktop-2" aria-labelledby="miniature-vinta-heading">
+        <figure class="frame-21">
+          <img
+            class="image-4"
+            src="images/boat.jpg"
+            alt="Miniature Vinta traditional boat"
+          />
+        </figure>
+        <h2 id="miniature-vinta-heading" class="text-wrapper-17">
+          Miniature Vinta
+        </h2>
+        <p class="zamboanga-del-sur-s">
+          <span class="text-wrapper-18"
+            >Zamboanga del Sur&#39;s vintas is one of vibrant cultural identity,
+            maritime heritage, and daily life for the Sama-Bajau, Tausug, and
+            Yakan people, with colorful sails symbolizing their rich history,
+            trade, and connection to the sea, especially celebrated during the
+          </span>
+          <a
+            href="https://www.google.com/search?sca_esv=8a3facad144694d1&sxsrf=AE3TifOSizRvVnGwFMN3tT4X2lvQhON7Nw%3A1766064991021&q=Hermosa+Festival&source=lnms&fbs=AIIjpHxU7SXXniUZfeShr2fp4giZ1Y6MJ25_tmWITc7uy4KIegmO5mMVANqcM7XWkBOa06dn2D9OWgTLQfUrJnETgD74qUQptjqPDfDBCgB_1tdfH3CSxXsTUm1PoZK3sHqjRIdbI4DwvjtJxGfadrP-v65RRZRr98NPflGm8ucas13OfpHPlbW-dheDP3JLPBgm18l0LEhwtqmOWQuDPVHNT1dgIB6Lw2FMKRkDk8kiaqacTa5DerQ&sa=X&ved=2ahUKEwjekvTkoMeRAxU0oK8BHRlVHBYQgK4QegQIARAE&biw=1536&bih=730&dpr=1.25&mstk=AUtExfAT8_VAlNddi7E_FlFOv9LNp6vGDUehw3rZy_aAfHyYdZCsrjnIrlH3NeI1Fzooq_qVGlFb0fHmmk6P-BYXbFus606PqTMG49bMuiCn6qCG1pi_APqOO2vkQZ9y0o6mESzp4JBtB07iFaKEALsrNvG4Bzjo1T9x1ATYNrvclFo_n5uyRXJyO7qZmaiFTF0HpZFXaLwdu96Uu20tf4YRBhI3nGqhSob4X2hsX2g_0QctrOAJZsmO7h7Ua8d66w1CdO5P10tGWwj5CtpOqwZhN7B07MzSK-mXvMttsnP2rHvmqg&csui=3"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><span class="text-wrapper-19">Hermosa Festival</span></a
+          >
+          <span class="text-wrapper-18">&#39;s </span>
+          <a
+            href="https://www.google.com/search?sca_esv=8a3facad144694d1&sxsrf=AE3TifOSizRvVnGwFMN3tT4X2lvQhON7Nw%3A1766064991021&q=Regatta+de+Zamboanga&source=lnms&fbs=AIIjpHxU7SXXniUZfeShr2fp4giZ1Y6MJ25_tmWITc7uy4KIegmO5mMVANqcM7XWkBOa06dn2D9OWgTLQfUrJnETgD74qUQptjqPDfDBCgB_1tdfH3CSxXsTUm1PoZK3sHqjRIdbI4DwvjtJxGfadrP-v65RRZRr98NPflGm8ucas13OfpHPlbW-dheDP3JLPBgm18l0LEhwtqmOWQuDPVHNT1dgIB6Lw2FMKRkDk8kiaqacTa5DerQ&sa=X&ved=2ahUKEwjekvTkoMeRAxU0oK8BHRlVHBYQgK4QegQIARAF&biw=1536&bih=730&dpr=1.25&mstk=AUtExfAT8_VAlNddi7E_FlFOv9LNp6vGDUehw3rZy_aAfHyYdZCsrjnIrlH3NeI1Fzooq_qVGlFb0fHmmk6P-BYXbFus606PqTMG49bMuiCn6qCG1pi_APqOO2vkQZ9y0o6mESzp4JBtB07iFaKEALsrNvG4Bzjo1T9x1ATYNrvclFo_n5uyRXJyO7qZmaiFTF0HpZFXaLwdu96Uu20tf4YRBhI3nGqhSob4X2hsX2g_0QctrOAJZsmO7h7Ua8d66w1CdO5P10tGWwj5CtpOqwZhN7B07MzSK-mXvMttsnP2rHvmqg&csui=3"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><span class="text-wrapper-19">Regatta de Zamboanga</span></a
+          >
+          <span class="text-wrapper-18"
+            >, showcasing unity and artistry. These traditional outrigger boats,
+            used for fishing, transport, and even as houses, feature distinct
+            bifurcated prows and sails in vertical colors representing their
+            diverse cultures, bridging ancient traditions with modern
+            celebrations.</span
+          >
+        </p>
+        <h2 class="top-categories">
+          <span class="span">Top </span>
+          <span class="text-wrapper-20">Categories</span>
+        </h2>
+        <img
+          class="ellipse-6"
+          src="images/pottery-tiwi-albay-9.jpg"
+          alt="Pottery and Ceramics Category"
+        />
+        <img
+          class="ellipse-7"
+          src="images/textile.jpg"
+          alt="Textiles and Weaving Category"
+        />
+        <img
+          class="ellipse-8"
+          src="images/home-decor.jpg"
+          alt="Home Decor Category"
+        />
+        <img
+          class="ellipse-9"
+          src="images/jewelry.jpg"
+          alt="Jewelry and Accessories Category"
+        />
+        <img
+          class="ellipse-10"
+          src="images/table.jpg"
+          alt="Miniature Category"
+        />
+        <img
+          class="ellipse-11"
+          src="images/bladesjpg.jpg"
+          alt="Blades and Tools Category"
+        />
+        <div class="potery-ceramics">Potery &amp; <br />Ceramics</div>
+        <div class="textiles-weaving">Textiles &amp; <br />Weaving</div>
+        <div class="text-wrapper-21">Home Decor</div>
+        <div class="jewelry-accessories">
+          Jewelry &amp;<br />
+          Accessories
+        </div>
+        <div class="text-wrapper-22">Miniature</div>
+        <div class="potery-ceramics-2">Blades &amp; <br />Tools</div>
+        <img class="line-5" src="img/line-10.svg" alt="" role="presentation" />
+        <h2 class="popular-products">
+          <span class="span">Popular </span>
+          <span class="text-wrapper-8">Products</span>
+        </h2>
+      </section>
+      <section class="desktop-3" aria-labelledby="popular-products-heading">
+        <img
+          class="rectangle-9"
+          src="images/2-2-ZAM-CITY-1.jpg"
+          alt="Popular product 1"
+        />
+        <img
+          class="rectangle-10"
+          src="images/2-2-ZAM-CITY-1.jpg"
+          alt="Popular product 2"
+        />
+        <img
+          class="rectangle-11"
+          src="images/2-2-ZAM-CITY-1.jpg"
+          alt="Popular product 3"
+        />
+        <img
+          class="rectangle-12"
+          src="images/2-2-ZAM-CITY-1.jpg"
+          alt="Popular product 4"
+        />
+        <img
+          class="rectangle-13"
+          src="images/2-2-ZAM-CITY-1.jpg"
+          alt="Popular product 5"
+        />
+        <img
+          class="rectangle-14"
+          src="images/2-2-ZAM-CITY-1.jpg"
+          alt="Popular product 6"
+        />
+        <img
+          class="rectangle-15"
+          src="images/2-2-ZAM-CITY-1.jpg"
+          alt="Popular product 7"
+        />
+        <img
+          class="rectangle-16"
+          src="images/2-2-ZAM-CITY-1.jpg"
+          alt="Popular product 8"
+        />
+        <img
+          class="rectangle-17"
+          src="images/2-2-ZAM-CITY-1.jpg"
+          alt="Popular product 9"
+        />
+        <img
+          class="rectangle-18"
+          src="images/2-2-ZAM-CITY-1.jpg"
+          alt="Popular product 10"
+        />
+        <img
+          class="rectangle-19"
+          src="images/2-2-ZAM-CITY-1.jpg"
+          alt="Popular product 11"
+        />
+        <img
+          class="rectangle-20"
+          src="images/2-2-ZAM-CITY-1.jpg"
+          alt="Popular product 12"
+        />
+        <nav class="frame-22" aria-label="Product filter">
+          <button class="text-wrapper-23">All</button>
+          <button class="text-wrapper-24">Popular</button>
+          <button class="text-wrapper-23">On Sale</button>
+          <button class="text-wrapper-23">Best Rated</button>
+        </nav>
+      </section>
+      <section
+        class="desktop-4"
+        id="about-us"
+        aria-labelledby="about-us-heading"
+      >
+        <div class="rectangle-21"></div>
+        <h2 id="about-us-heading" class="text-wrapper-25">About Us</h2>
+        <img
+          class="image-5"
+          src="images/about_us.jpg"
+          alt="About us image"
+        />
+        <p class="our-story-from-hands">
+          Our Story: From Hands to Heart<br />At ZamboSur Crafts, we believe
+          that the most beautiful things in life aren't made by machines—they
+          are dreamed up, shaped, and perfected by human hands.<br />Our journey
+          began in Pagadian City with a simple observation: in a world of
+          mass-produced goods, the &#34;soul&#34; of craftsmanship was being
+          lost. We wanted to bring back the connection between the maker and the
+          home. What started as a small passion project at a kitchen table has
+          grown into a community of artisans dedicated to preserving traditional
+          techniques.<br /><br />Why Handicrafts? Every item in our shop tells a
+          story. Whether it's the slight variation in a ceramic glaze or the
+          intricate weave of a basket, these &#34;imperfections&#34; are the
+          fingerprints of the artist. When you buy from us, you aren't just
+          buying a product—you're supporting a legacy of skill and patience.
+        </p>
+        <p class="text-wrapper-26">
+          At ZamboSur Crafts, our mission is simple: to celebrate the human
+          touch. We strive to preserve traditional crafting techniques and
+          provide a platform for artisans to thrive, ensuring that every home
+          can experience the warmth and character of a truly handmade object.
+        </p>
+        <h3 class="text-wrapper-27">Our Mission</h3>
+        <img
+          class="image-6"
+          src="images/mission.jpg"
+          alt="Our mission image"
+        />
+        <div
+          class="map-container"
+          role="region"
+          aria-label="Location map"
+        ></div>
+        <form class="frame-23" aria-labelledby="contact-form-heading">
+          <h3 id="contact-form-heading" class="text-wrapper-28">Contact Us</h3>
+          <input
+            type="text"
+            class="rectangle-22"
+            id="first-name"
+            name="first-name"
+            required
+            aria-label="First Name"
+          />
+          <input
+            type="text"
+            class="rectangle-23"
+            id="last-name"
+            name="last-name"
+            required
+            aria-label="Last Name"
+          />
+          <label for="first-name" class="text-wrapper-29">First Name*</label>
+          <p class="text-wrapper-30">Ask anything or share your thoughts:</p>
+          <label for="email" class="text-wrapper-31">Email Address*</label>
+          <label for="last-name" class="text-wrapper-32">Last Name*</label>
+          <input
+            type="email"
+            class="rectangle-24"
+            id="email"
+            name="email"
+            required
+            aria-label="Email Address"
+          />
+          <textarea
+            class="rectangle-26"
+            id="message"
+            name="message"
+            rows="5"
+            aria-label="Your message"
+          ></textarea>
+          <button type="submit" class="rectangle-25">
+            <span class="text-wrapper-33">Submit</span>
+          </button>
+        </form>
+        <div class="default-marker" role="img" aria-label="Location marker">
+          <div class="frame-24">
+            <img class="vector" src="img/image.svg" alt="" />
+            <img class="vector-2" src="img/vector.svg" alt="" />
+          </div>
+        </div>
+        <footer class="frame-25">
+          <h3 class="text-wrapper-34">KEEP IN TOUCH</h3>
+          <nav
+            class="ONLINE-SHOPPING-men"
+            aria-label="Online shopping categories"
+          >
+            <span class="text-wrapper-35">ONLINE SHOPPING<br /> </span>
+            <span class="text-wrapper-36"
+              >Men <br />Women<br />Kids<br />Home &amp; Living<br />Beauty<br />Gift
+              Cards</span
+            >
+          </nav>
+          <nav class="customer-policies" aria-label="Customer policies">
+            <span class="text-wrapper-35">Customer Policies<br /> </span>
+            <span class="text-wrapper-36"
+              >Contact Us <br />FAQ<br />T&amp;C<br />Terms of Use<br />Shipping<br />Track
+              Orders<br />Cancellation<br />Returns<br />Privacy Policy</span
+            >
+          </nav>
+          <nav class="useful-links-blog" aria-label="Useful links">
+            <span class="text-wrapper-35"> Useful links<br /> </span>
+            <span class="text-wrapper-36"
+              >Blog<br />Careers<br />Site Map<br />Corporate Information</span
+            >
+          </nav>
+          <div class="text-wrapper-37">Experience Mobile App</div>
+          <a
+            href="#google-play"
+            class="rectangle-27"
+            aria-label="Download on Google Play"
+          ></a>
+          <a
+            href="#app-store"
+            class="rectangle-28"
+            aria-label="Download on App Store"
+          ></a>
+          <p class="GET-IT-ON-google">
+            <span class="text-wrapper-38">GET IT ON<br /></span>
+            <span class="text-wrapper-39">Google Play</span>
+          </p>
+          <p class="download-on-the-app">
+            <span class="text-wrapper-40">Download on the<br /></span>
+            <span class="text-wrapper-41">App Store</span>
+          </p>
+          <img
+            class="google-play-store"
+            src="imges/images/google-play-style-svgrepo-com.svg"
+            alt="Google Play Store icon"
+          />
+          <img
+            class="apple-inc"
+            src="imges/images/app-store-svgrepo-com.svg"
+            alt="Apple App Store icon"
+          />
+          <nav class="frame-26" aria-label="Social media links">
+            <a href="#facebook" aria-label="Facebook"
+              ><img class="facebook" src="img/facebook.png" alt="Facebook"
+            /></a>
+            <a href="#twitter" aria-label="Twitter"
+              ><img
+                class="twitter-bird"
+                src="img/twitter-bird.png"
+                alt="Twitter"
+            /></a>
+            <a href="#youtube" aria-label="YouTube"
+              ><img class="you-tube" src="img/you-tube.png" alt="YouTube"
+            /></a>
+            <a href="#instagram" aria-label="Instagram"
+              ><img class="instagram" src="img/instagram.png" alt="Instagram"
+            /></a>
+          </nav>
+          <img class="line-6" src="img/line-6.svg" alt="" role="presentation" />
+          <p class="text-wrapper-42">In Case Of Any Concern,</p>
+          <div class="frame-27">
+            <a href="#contact" class="text-wrapper-43">Contact Us</a>
+          </div>
+          <p class="element-www">
+            2025&nbsp;&nbsp;www.zamboangacrafts.com. All rights reserved.
+          </p>
+          <img
+            class="guarantee"
+            src="img/guarantee.png"
+            alt="Quality guarantee icon"
+          />
+          <img
+            class="in-transit"
+            src="img/in-transit.png"
+            alt="Fast shipping icon"
+          />
+          <img
+            class="protect"
+            src="img/protect.png"
+            alt="Secure payment icon"
+          />
+        </footer>
+        <a href="#top" class="group" aria-label="Back to top">
+          <span class="text-wrapper-44">↑ Back To Top</span>
+        </a>
+      </section>
+      <div class="rectangle-29"></div>
+      <img class="rectangle-30" src="images/boat.jpg" alt="Gallery image 1" />
+      <img class="rectangle-31" src="images/floral.jpg" alt="Gallery image 2" />
+      <img class="rectangle-32" src="images/banig.jpg" alt="Gallery image 3" />
+      <img
+        class="rectangle-33"
+        src="images/decorative.jpg"
+        alt="Gallery image 4"
+      />
+      <img class="rectangle-34" src="images/chair.jpg" alt="Gallery image 5" />
+      <img
+        class="rectangle-35"
+        src="images/fruit_basket.jpg"
+        alt="Gallery image 6"
+      />
+      <img
+        class="rectangle-36"
+        src="images/malong_tinalak.jpg"
+        alt="Gallery image 7"
+      />
+      <img class="rectangle-37" src="images/picnic.jpg" alt="Gallery image 8" />
+      <img
+        class="rectangle-38"
+        src="images/silk_pillowcase.jpg"
+        alt="Gallery image 9"
+      />
+      <a
+        href="#all-gallery"
+        class="rectangle-39"
+        aria-label="See all gallery images"
+      ></a>
+      <span class="text-wrapper-45">See All</span>
+    </div>
+    <!-- Authentication Modal -->
+    <div id="authOverlay" class="auth-overlay">
+      <div class="auth-modal">
+        <button class="close-btn" id="closeAuth">X</button>
+        <div class="auth-container">
+          <div class="auth-branding">
+            <h2 class="branding-text">ZamboSur Crafts</h2>
+          </div>
+
+          <div class="auth-form-side">
+            <div id="signInForm" class="auth-form">
+              <p class="back-link">← Back to Sign up</p>
+              <h2 class="form-title">Sign In</h2>
+              <div class="input-group">
+                <label>Email Address</label>
+                <input type="email" id="loginEmail" />
+              </div>
+              <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="loginPass" />
+              </div>
+              <button class="continue-btn">Continue</button>
+              <div class="separator">or</div>
+              <button class="social-btn google">
+                <img src="google-icon.png" alt="" /> Sign in with Google
+              </button>
+              <button class="social-btn facebook">
+                <img src="fb-icon.png" alt="" /> Sign in with Facebook
+              </button>
+              <p class="footer-link">Forgot password ?</p>
+            </div>
+
+            <div id="signUpForm" class="auth-form hidden">
+              <h2 class="form-title">Sign up</h2>
+              <div class="input-group">
+                <label>Fullname</label>
+                <input type="text" id="regName" />
+              </div>
+              <div class="input-group">
+                <label>Email Address</label>
+                <input type="email" id="regEmail" />
+              </div>
+              <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="regPass" />
+              </div>
+              <div class="input-group">
+                <label>Confirm Password</label>
+                <input type="password" id="regPassConfirm" />
+              </div>
+              <button class="continue-btn">Continue</button>
+              <div class="separator">or</div>
+
+              <div id="googleSignUpBtn" class="social-container"></div>
+
+              <button class="social-btn facebook" onclick="loginWithFacebook()">
+                <img src="fb-icon.png" alt="" /> Sign up with Facebook
+              </button>
+              <p class="footer-link">
+                Already have an account? <span id="toSignIn">Sign In →</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Detail Overlay -->
+    <div id="productOverlay" class="product-overlay">
+      <div class="product-overlay-content">
+        <button class="close-product-overlay" onclick="closeProductOverlay()">
+          ×
+        </button>
+
+        <div class="product-detail-container">
+          <!-- Product Image -->
+          <div class="product-image-section">
+            <img
+              id="overlayMainImage"
+              src="2-2-ZAM-CITY-1.jpg"
+              alt="Product Image"
+              class="product-detail-image"
+            />
+          </div>
+
+          <!-- Product Details -->
+          <div class="product-info-section">
+            <h2 id="overlayProductTitle" class="product-detail-title">
+              Product Title
+            </h2>
+            <p id="overlayProductDesc" class="product-detail-description">
+              Product description goes here...
+            </p>
+
+            <div class="product-detail-price-section">
+              <span class="product-size">Size: Standard</span>
+              <div class="product-price-display">
+                <span class="price-label">Price:</span>
+                <span id="overlayProductPrice" class="product-detail-price"
+                  >Php 0.00</span
+                >
+              </div>
+            </div>
+
+            <!-- Quantity Selector -->
+            <div class="quantity-section">
+              <span class="quantity-label">Quantity:</span>
+              <div class="quantity-controls">
+                <button
+                  class="quantity-btn minus-btn"
+                  onclick="updateQuantity(-1)"
+                >
+                  −
+                </button>
+                <span id="quantityValue" class="quantity-value">1</span>
+                <button
+                  class="quantity-btn plus-btn"
+                  onclick="updateQuantity(1)"
+                >
+                  +
+                </button>
+              </div>
+              <div class="total-section">
+                <span class="total-label">Total:</span>
+                <span id="totalPrice" class="total-price-value">Php 0.00</span>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="product-actions">
+              <button class="add-to-cart-btn" onclick="addToCart()">
+                ADD TO CART
+              </button>
+              <button class="save-btn" onclick="saveProduct()">SAVE</button>
+              <span class="heart-icon" onclick="toggleWishlist(this)">♥</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Related Products Thumbnails -->
+        <div class="related-products-section">
+          <h3 class="related-title">You May Also Like</h3>
+          <div id="relatedProductsGrid" class="related-products-grid">
+            <!-- Related products will be loaded dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="chat-bubble" onclick="toggleChat()">
+      <i class="fas fa-comments"></i>
+    </div>
+
+    <div id="chat-window" style="display: none">
+      <div id="chat-header">
+        <span>🏺 ZamboSur Assistant</span>
+        <button onclick="toggleChat()">&times;</button>
+      </div>
+      <div id="chat-body">
+        <div class="message bot-message">
+          Hi! I'm your ZamboSur Crafts assistant. How can I help you today?
+        </div>
+      </div>
+      <div id="chat-footer">
+        <input
+          type="text"
+          id="chat-input"
+          placeholder="Ask about our crafts..."
+          onkeypress="handleEnter(event)"
+        />
+        <button onclick="sendMessage()">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <script>
+      async function handleCredentialResponse(response) {
+        // Decode the Google JWT token to get user info
+        const responsePayload = decodeJwtResponse(response.credential);
+
+        const userData = {
+          email: responsePayload.email,
+          fullname: responsePayload.name,
+          token: response.credential,
+        };
+
+        try {
+          const res = await fetch("backend/index.php/auth/social-login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(userData),
+          });
+
+          const data = await res.json();
+
+          if (data.success) {
+            localStorage.setItem("zambosur_user_id", data.user.id);
+            localStorage.setItem("zambosur_user_name", data.user.name);
+            alert(`Welcome, ${data.user.name}!`);
+            location.reload();
+          } else {
+            alert("Login Failed: " + data.error);
+          }
+        } catch (err) {
+          console.error("Fetch error:", err);
+        }
+      }
+
+      // Helper function to decode the Google token
+      function decodeJwtResponse(token) {
+        let base64Url = token.split(".")[1];
+        let base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+        let jsonPayload = decodeURIComponent(
+          atob(base64)
+            .split("")
+            .map(function (c) {
+              return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+            })
+            .join(""),
+        );
+        return JSON.parse(jsonPayload);
+      }
+
+      window.onload = function () {
+        // --- GOOGLE CONFIG ---
+        google.accounts.id.initialize({
+          client_id:
+            "49537220425-a3tiqjjgltbac1k3o7a28kau138taps0.apps.googleusercontent.com",
+          callback: handleCredentialResponse,
+        });
+
+        // Render Google Button in Sign Up form
+        google.accounts.id.renderButton(
+          document.getElementById("googleSignUpBtn"),
+          {
+            theme: "filled_blue",
+            size: "large",
+            text: "signup_with",
+            width: "100%",
+          },
+        );
+
+        // --- FACEBOOK CONFIG ---
+        window.fbAsyncInit = function () {
+          FB.init({
+            appId: "YOUR_FB_APP_ID",
+            cookie: true,
+            xfbml: true,
+            version: "v18.0",
+          });
+        };
+      };
+
+      // Load Facebook SDK
+      (function (d, s, id) {
+        var js,
+          fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+          return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      })(document, "script", "facebook-jssdk");
+
+      function loginWithFacebook() {
+        FB.login(
+          function (response) {
+            if (response.authResponse) {
+              FB.api("/me", { fields: "name, email" }, function (fbUser) {
+                // Send to your backend
+                sendSocialDataToBackend({
+                  email: fbUser.email,
+                  fullname: fbUser.name,
+                  provider: "facebook",
+                });
+              });
+            }
+          },
+          { scope: "email" },
+        );
+      }
+
+      // Reusable fetch function for both Google and FB
+      async function sendSocialDataToBackend(userData) {
+        try {
+          const res = await fetch("backend/index.php/auth/social-login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(userData),
+          });
+          const data = await res.json();
+          if (data.success) {
+            alert("Welcome, " + data.user.name);
+            location.reload();
+          }
+        } catch (err) {
+          console.error("Social login error:", err);
+        }
+      }
+    </script>
+  </body>
+</html>

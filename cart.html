@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Shopping Cart | ZamboSur Crafts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="profile-style.css">
+    <link rel="stylesheet" href="cart-style.css">
+    <link rel="stylesheet" href="malongs-styles.css">
+    <link rel="stylesheet" href="checkout-style.css">
+</head>
+<body>
+
+    <nav class="navbar" id="mainNav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">ZamboSur<span>Crafts</span></a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="allproducts-dashboard.html">Products</a>
+                <a href="wishlist.html">Wishlist</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="profile-page-wrapper">
+        <div class="profile-container">
+            <aside class="profile-sidebar">
+                <div class="avatar-circle" id="avatarIcon">?</div>
+                <h2 id="sideName">Loading...</h2>
+                <nav class="side-menu">
+                    <p class="menu-label">My Account</p>
+                    <a href="profile.html"><i class="fas fa-user"></i> Personal Information</a>
+                    <a href="security.html" ><i class="fas fa-shield-alt"></i> Account Security</a>
+                    <a href="addresses.html"><i class="fas fa-map-marker-alt"></i> Address Book</a>
+                    
+                    <p class="menu-label">Orders & Activity</p>
+                    <a href="orders.html"><i class="fas fa-box"></i> Order History</a>
+                    <a href="wishlist.html"><i class="fas fa-heart"></i> Wishlist</a>
+                    <a href="cart.html" class="active"><i class="fas fa-shopping-cart"></i>Shopping Cart</a>
+                    
+                    <p class="menu-label">Preferences</p>
+                    <a href="settings.html" ><i class="fas fa-cog"></i> Settings</a>
+                    <hr>
+                    <a href="#" class="logout-link" id="logoutTrigger"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </nav>
+            </aside>
+
+            <main class="profile-main-content">
+                <header class="content-header">
+                    <h1>Shopping Cart</h1>
+                    <span id="cartCount" class="count-badge">0 Items</span>
+                </header>
+
+                <div class="cart-layout">
+                    <div class="cart-items-container" id="cartItemsList">
+                        <p class="loading-text">Loading your cart...</p>
+                    </div>
+
+                    <aside class="cart-summary">
+                        <h3>Order Summary</h3>
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="subtotalPrice">₱0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping</span>
+                            <span id="shippingFeePrice">₱0.00</span> 
+                        </div>
+                        <hr>
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span id="totalOrderPrice">₱0.00</span>
+                        </div>
+                        <button class="checkout-btn" id="checkoutBtn" onclick="handleCheckout()" disabled>Proceed to Checkout</button>
+                    </aside>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="profile-logic.js"></script>
+    <script src="cart-logic.js"></script>
+</body>
+</html>

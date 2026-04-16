@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handloom Weaving - ZamboSur Crafts</title>
+    
+    <link rel="stylesheet" href="products-styles.css">
+    <link rel="stylesheet" href="malongs-styles.css"> 
+     <link rel="stylesheet" href="profile-dropdown.css">
+</head>
+<body>
+
+    <style>
+       .malong-sidebar {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    height: fit-content;
+}
+
+.malong-sidebar h3 {
+    border-bottom: 2px solid var(--secondary);
+    padding-bottom: 10px;
+    font-size: 1.2rem;
+    color: var(--primary);
+}
+
+#weavingCategoryList li {
+    list-style: none;
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px; /* Gives it a button-like feel */
+    color: var(--accent); /* Default dark text */
+    margin-bottom: 5px;
+}
+
+/* Hover and Active State Fix */
+#weavingCategoryList li:hover, 
+#weavingCategoryList li.active {
+    background-color: var(--primary) !important; /* Force the Maroon background */
+    color: var(--white) !important; /* Force the text to be white so it doesn't disappear */
+    padding-left: 20px; /* Slight indent animation */
+    font-weight: 600;
+}
+</style>
+    <div class="landing-page">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="index.html" class="nav-logo">ZamboSur<span>Crafts</span></a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="allproducts-dashboard.html">All Products</a>
+                    <a href="malongs.html">Malongs</a>
+                    <a href="pillowcase.html">Pillowcases</a>
+                    <a href="baskets.html">Baskets</a>
+                    <a href="weaving.html" class="active">Weaving</a>
+                    <a href="modern-miniature.html">Miniatures</a>
+                </div>
+                 <div class="nav-actions">
+                    <div class="cart-icon" onclick="location.href='cart.html'">
+                        <span class="icon">🛒</span>
+                        <span id="cartCount" class="badge">0</span>
+                    </div>
+                
+                    <div id="userProfile" class="user-profile-hidden">
+                        <div class="profile-container">
+                            <div class="profile-icon">👤</div>
+                            <span id="userNameDisplay" class="text-wrapper-2">Hello, User</span>
+                            <div class="profile-dropdown">
+                                <a href="profile.html" class="text-wrapper-2 profile-option">My Profile</a>
+                                <a href="javascript:void(0)" class="text-wrapper-2 profile-option">My Orders</a>
+                                <a href="javascript:void(0)" id="logoutBtn" class="text-wrapper-2 profile-option">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section class="malong-hero">
+            <div class="hero-content">
+                <p class="pre-title">Handloom Masterpieces</p>
+                <h1 class="malong-title">Artisan <span>Weaving</span></h1>
+                
+                
+            </div>
+        </section>
+
+        <div class="filter-toolbar" style="background: white; border-bottom: 1px solid #eee; padding: 10px 0; position: sticky; top: 70px; z-index: 100;">
+            <div class="nav-container" style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="filter-group">
+                    <select id="malongSort" style="padding: 5px 10px; border-radius: 5px; border: 1px solid #ddd;">
+                        <option value="default">Sort By</option>
+                        <option value="price-low">Price: Low-High</option>
+                        <option value="price-high">Price: High-Low</option>
+                    </select>
+                </div>
+                <div class="view-toggle">
+                    <span id="productCount" style="font-size: 0.9rem; color: #666;">0 creations found</span>
+                </div>
+            </div>
+        </div>
+
+        <main class="products-layout">
+            <aside class="malong-sidebar">
+                <h3>Weave Patterns</h3>
+                <ul id="weavingCategoryList">
+                    <li class="active" data-type="all">All Weaves</li>
+                    <li data-type="geometric">Geometric</li>
+                    <li data-type="floral">Floral Motifs</li>
+                    <li data-type="tribal">Tribal Patterns</li>
+                    <li data-type="custom">Custom Order</li>
+                </ul>
+
+                <div class="price-range-filter" style="margin-top: 30px;">
+                    <h4>Max Price</h4>
+                    <input type="range" id="priceRange" min="0" max="10000" value="10000" style="width: 100%; accent-color: var(--primary);">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-top: 5px;">
+                        <span>Php 0</span>
+                        <span id="priceValue">Php 10,000</span>
+                    </div>
+                </div>
+
+                <div class="best-seller-filter" style="margin-top: 20px;">
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" id="bestSellerOnly">
+                        <span style="font-size: 0.9rem;">Show Masterpieces Only</span>
+                    </label>
+                </div>
+            </aside>
+
+            <section class="malong-grid" id="weavingGrid">
+                </section>
+        </main>
+
+        <div id="loadingState" style="text-align: center; padding: 50px;">
+            <div class="spinner"></div>
+            <p>Curating weaving collection...</p>
+        </div>
+
+        <div id="emptyState" style="display: none; text-align: center; padding: 50px;">
+            <h3>No Weaves Found</h3>
+            <p>Try adjusting your filters.</p>
+        </div>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div class="quick-view-modal" id="quickViewModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modalProductImage" src="" alt="Malong Product">
+                </div>
+                <div class="modal-details">
+                    <h3 id="modalProductName"></h3>
+                    <p id="modalProductDesc"></p>
+                    <div class="modal-price" id="modalProductPrice"></div>
+                    <div class="modal-badges">
+                        <span class="badge" id="modalProductBadge"></span>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="authOverlay" class="auth-overlay">
+  <div class="auth-modal">
+    <button class="close-btn" id="closeAuth">X</button>
+    
+    <div class="auth-container">
+      <div class="auth-branding">
+        <h2 class="branding-text">ZamboSur Crafts</h2>
+      </div>
+
+      <div class="auth-form-side">
+        <div id="signInForm" class="auth-form">
+          <p class="back-link">← Back to Sign up</p>
+          <h2 class="form-title">Sign In</h2>
+          <div class="input-group">
+            <label>Email Address</label>
+            <input type="email" id="loginEmail">
+          </div>
+          <div class="input-group">
+            <label>Password</label>
+            <input type="password" id="loginPass">
+          </div>
+          <button class="continue-btn">Continue</button>
+          <div class="separator">or</div>
+          <button class="social-btn google"><img src="google-icon.png" alt=""> Sign in with Google</button>
+          <button class="social-btn facebook"><img src="fb-icon.png" alt=""> Sign in with Facebook</button>
+          <p class="footer-link">Forgot password ?</p>
+        </div>
+
+        <div id="signUpForm" class="auth-form hidden">
+          <h2 class="form-title">Sign up</h2>
+          <div class="input-group">
+            <label>Fullname</label>
+            <input type="text" id="regName">
+          </div>
+          <div class="input-group">
+            <label>Email Address</label>
+            <input type="email" id="regEmail">
+          </div>
+          <div class="input-group">
+            <label>Password</label>
+            <input type="password" id="regPass">
+          </div>
+          <div class="input-group">
+            <label>Confirm Password</label>
+            <input type="password" id="regPassConfirm">
+          </div>
+          <button class="continue-btn">Continue</button>
+          <div class="separator">or</div>
+          <button class="social-btn google">Sign in with Google</button>
+          <button class="social-btn facebook">Sign in with Facebook</button>
+          <p class="footer-link">Already have an account? <span id="toSignIn">Sign In →</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <script src="script.js"></script>
+    <script src="weaving-script.js"></script>
+</body>
+</html>

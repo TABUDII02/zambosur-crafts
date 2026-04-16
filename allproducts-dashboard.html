@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products Dashboard - ZamboSur Crafts</title>
+    
+    <link rel="stylesheet" href="products-styles.css">
+    <link rel="stylesheet" href="malongs-styles.css">
+    <link rel="stylesheet" href="profile-dropdown.css">
+   
+</head>
+<body>
+    <style>/* Modern Design Updates */
+        /* --- ARTISAN DROPDOWN & SLIDER (ALL PRODUCTS) --- */
+
+/* Targets Color Filter and Product Sort */
+.filter-group select, 
+#productSort {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 0.95rem;
+    border: 2px solid #e2e8f0; /* Matches your current input border */
+    border-radius: 12px;
+    background-color: white;
+    color: #4a5568;
+    cursor: pointer;
+    appearance: none; /* Removes default browser arrow */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23667eea' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+/* Specific styling for the top Filter Bar selects to keep them aligned */
+.filter-container select {
+    min-width: 160px;
+}
+
+/* Hover & Focus States - Using your Blue/Purple brand gradient colors */
+.filter-group select:hover, 
+#productSort:hover {
+    border-color: #667eea;
+}
+
+.filter-group select:focus, 
+#productSort:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
+/* --- PRICE RANGE SLIDER --- */
+
+#priceRange {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 5px;
+    outline: none;
+    margin: 15px 0;
+}
+
+/* Slider Thumb for Chrome/Safari */
+#priceRange::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, #667eea, #764ba2); /* Brand Gradient */
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease;
+}
+
+#priceRange::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+}
+
+/* --- CHECKBOX STYLING --- */
+
+.best-seller-filter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    background: #f8fafc;
+    border-radius: 10px;
+    border: 1px solid #edf2f7;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.best-seller-filter:hover {
+    background: #f1f5f9;
+}
+
+.best-seller-filter input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #667eea; /* Makes the checkbox use your brand color */
+}
+            </style>
+    <div class="landing-page">
+            <div class="rectangle"></div>
+            <div class="div"></div>
+            <div class="frame">
+                <div class="frame-wrapper">
+                    <div class="div-wrapper"><h1 class="text-wrapper">ZamboSur Crafts</h1></div>
+                </div>
+            </div>
+        <nav class="navbar" aria-label="Main navigation">
+            <div class="nav-container">
+                <a href="index.html" class="nav-logo">ZamboSur<span>Crafts</span></a>
+               <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="allproducts-dashboard.html" class="active">All Products</a>
+                    <a href="malongs.html" >Malongs</a>
+                    <a href="pillowcase.html">Pillowcases</a>
+                    <a href="baskets.html">Baskets</a>
+                    <a href="weaving.html" >Weaving</a>
+                    <a href="modern-miniature.html">Miniatures</a>
+                </div>
+
+                <div class="nav-actions">
+                    <div class="cart-icon" onclick="location.href='cart.html'">
+                        <span class="icon">🛒</span>
+                        <span id="cartCount" class="badge">0</span>
+                    </div>
+                
+                    <div id="userProfile" class="user-profile-hidden">
+                        <div class="profile-container">
+                            <div class="profile-icon">👤</div>
+                            <span id="userNameDisplay" class="text-wrapper-2">Hello, User</span>
+                            <div class="profile-dropdown">
+                                <a href="profile.html" class="text-wrapper-2 profile-option">My Profile</a>
+                                <a href="javascript:void(0)" class="text-wrapper-2 profile-option">My Orders</a>
+                                <a href="javascript:void(0)" id="logoutBtn" class="text-wrapper-2 profile-option">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </nav>
+        
+    </div>
+
+    <!-- Dashboard Hero Section -->
+    <section class="malong-hero">
+        <div class="malong-hero-content">
+            <h1 class="malong-title">Our <span class="highlight">Products</span></h1>
+            <p class="malong-subtitle">Browse everything handcrafted from Zamboanga del Sur</p>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="malong-filters">
+        <div class="filter-container">
+            <div class="filter-group">
+                <label>Filter by:</label>
+                <select id="colorFilter">
+                    <option value="all">All Colors</option>
+                    <option value="red">Red</option>
+                    <option value="blue">Blue</option>
+                    <option value="green">Green</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="purple">Purple</option>
+                    <option value="black">Black</option>
+                    <option value="white">White</option>
+                    <option value="orange">Orange</option>
+                    <option value="gray">Gray</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Sort by:</label>
+                <select id="productSort">
+                    <option value="default">Default</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="name">Name: A-Z</option>
+                </select>
+            </div>
+            <div class="view-toggle">
+                <button class="view-btn active" data-view="grid">
+                    <span>&#9638;</span> Grid
+                </button>
+                <button class="view-btn" data-view="list">
+                    <span>&#9776;</span> List
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="malong-products-section">
+        <div class="products-layout">
+            <!-- Sidebar -->
+            <aside class="sidebar-categories malong-sidebar">
+                <h3>Product Categories</h3>
+                
+                <ul class="category-list" id="categoryList">
+                    <li class="active" data-cat="all">All Products</li>
+                    <li data-cat="malongs">Malongs</li>
+                    <li data-cat="pillowcases">Pillowcases</li>
+                    <li data-cat="baskets">Baskets</li>
+                    <li data-cat="weavings">Weaving</li>
+                    <li data-cat="miniatures">Miniatures</li>
+                </ul>
+
+                <div class="price-range-filter">
+                    <h4>Price Range</h4>
+                    <input type="range" id="priceRange" min="0" max="5000" value="5000">
+                    <div class="price-labels">
+                        <span>Php 0</span>
+                        <span id="priceValue">Php 5000</span>
+                    </div>
+                </div>
+
+                <div class="best-seller-filter">
+                    <label>
+                        <input type="checkbox" id="bestSellerOnly">
+                        <span>Show Best Sellers Only</span>
+                    </label>
+                </div>
+            </aside>
+
+            <!-- Products Display -->
+            <main class="products-display">
+                <header class="display-header">
+                    <h2 id="categoryTitle">All Products</h2>
+                    <p class="results-count"><span id="productCount">0</span> products found</p>
+                </header>
+
+                <section class="product-grid malong-grid" id="productGrid">
+                    <!-- Products will be loaded dynamically -->
+                </section>
+
+                <!-- Loading State -->
+                <div class="loading-state" id="loadingState">
+                    <div class="spinner"></div>
+                    <p>Loading products...</p>
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-state" id="emptyState" style="display: none;">
+                    <img src="images.png" alt="No products found">
+                    <h3>No Products Found</h3>
+                    <p>Try adjusting your filters to find what you're looking for.</p>
+                </div>
+            </main>
+        </div>
+    </section>
+
+    <!-- Quick View Modal (same as malongs) -->
+    <div class="quick-view-modal" id="quickViewModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modalProductImage" src="" alt="Product">
+                </div>
+                <div class="modal-details">
+                    <h3 id="modalProductName"></h3>
+                    <p id="modalProductDesc"></p>
+                    <div class="modal-price" id="modalProductPrice"></div>
+                    <div class="modal-badges">
+                        <span class="badge" id="modalProductBadge"></span>
+                    </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Authentication Modal -->
+    <div id="authOverlay" class="auth-overlay">
+        <div class="auth-modal">
+            <button class="close-btn" id="closeAuth">X</button>
+            
+            <div class="auth-container">
+                <div class="auth-branding">
+                    <h2 class="branding-text">ZamboSur Crafts</h2>
+                </div>
+
+                <div class="auth-form-side">
+                    <div id="signInForm" class="auth-form">
+                        <p class="back-link">← Back to Sign up</p>
+                        <h2 class="form-title">Sign In</h2>
+                        <div class="input-group">
+                            <label>Email Address</label>
+                            <input type="email" id="loginEmail">
+                        </div>
+                        <div class="input-group">
+                            <label>Password</label>
+                            <input type="password" id="loginPass">
+                        </div>
+                        <button class="continue-btn">Continue</button>
+                        <div class="separator">or</div>
+                        <button class="social-btn google"><img src="google-icon.png" alt=""> Sign in with Google</button>
+                        <button class="social-btn facebook"><img src="fb-icon.png" alt=""> Sign in with Facebook</button>
+                        <p class="footer-link">Forgot password ?</p>
+                    </div>
+
+                    <div id="signUpForm" class="auth-form hidden">
+                        <h2 class="form-title">Sign up</h2>
+                        <div class="input-group">
+                            <label>Fullname</label>
+                            <input type="text" id="regName">
+                        </div>
+                        <div class="input-group">
+                            <label>Email Address</label>
+                            <input type="email" id="regEmail">
+                        </div>
+                        <div class="input-group">
+                            <label>Password</label>
+                            <input type="password" id="regPass">
+                        </div>
+                        <div class="input-group">
+                            <label>Confirm Password</label>
+                            <input type="password" id="regPassConfirm">
+                        </div>
+                        <button class="continue-btn">Continue</button>
+                        <div class="separator">or</div>
+                        <button class="social-btn google">Sign in with Google</button>
+                        <button class="social-btn facebook">Sign in with Facebook</button>
+                        <p class="footer-link">Already have an account? <span id="toSignIn">Sign In →</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="allproducts-script.js"></script>
+</body>
+</html>

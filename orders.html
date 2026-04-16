@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History | ZamboSur Crafts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="profile-style.css">
+    <link rel="stylesheet" href="malongs-styles.css">
+</head>
+<body>
+
+     <nav class="navbar" id="mainNav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">ZamboSur<span>Crafts</span></a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="allproducts-dashboard.html">Products</a>
+                <a href="#about-us">About Us</a>
+            </div>
+        </div>
+    </nav>
+    <div class="profile-page-wrapper">
+        <div class="profile-container">
+            <aside class="profile-sidebar">
+                <div class="avatar-circle" id="avatarIcon">?</div>
+                <h2 id="sideName">Loading...</h2>
+                <p id="sideEmail">---</p>
+                
+                 <nav class="side-menu">
+                    <p class="menu-label">My Account</p>
+                    <a href="profile.html"><i class="fas fa-user"></i> Personal Information</a>
+                    <a href="security.html" ><i class="fas fa-shield-alt"></i> Account Security</a>
+                    <a href="addresses.html"><i class="fas fa-map-marker-alt"></i> Address Book</a>
+                    
+                    <p class="menu-label">Orders & Activity</p>
+                    <a href="orders.html"  class="active"><i class="fas fa-box"></i> Order History</a>
+                    <a href="wishlist.html"><i class="fas fa-heart"></i> Wishlist</a>
+                    <a href="cart.html"><i class="fas fa-shopping-cart"></i>Shopping Cart</a>
+                    
+                    <p class="menu-label">Preferences</p>
+                    <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                    <hr>
+                    <a href="#" class="logout-link" id="logoutTrigger"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </nav>
+            </aside>
+
+            <main class="profile-main-content">
+                <header class="content-header">
+                    <h1>My Orders</h1>
+                    <div class="order-filter">
+                        <select id="statusFilter">
+                            <option value="all">All Orders</option>
+                            <option value="pending">Pending</option>
+                            <option value="shipped">Shipped</option>
+                            <option value="delivered">Delivered</option>
+                        </select>
+                    </div>
+                </header>
+
+                <div class="orders-list" id="ordersContainer">
+                    <p class="loading-text">Loading your crafting journey...</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="profile-logic.js"></script>
+    <script src="orders-logic.js"></script>
+</body>
+</html>
