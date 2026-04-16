@@ -1,3 +1,4 @@
+console.log("Version 2.0 - Path fixed");
 document.addEventListener('DOMContentLoaded', () => {
     
     // --- 1. Category Filtering Logic ---
