@@ -3,22 +3,23 @@
  * Database Configuration for ZamboSur Crafts PHP Backend
  */
 
-// Database credentials
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'zambosur_db');
+// Use Environment Variables for Render, fallback to XAMPP defaults for local
+define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
+define('DB_USER', getenv('DB_USER') ?: 'root');
+define('DB_PASS', getenv('DB_PASS') ?: '');
+define('DB_NAME', getenv('DB_NAME') ?: 'zambosur_db');
 
 // Create database connection
 function getDBConnection() {
     $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     
     if ($conn->connect_error) {
+        // Log the error internally but don't show passwords in the JSON output
+        error_log('Database connection failed: ' . $conn->connect_error);
         http_response_code(500);
-        die(json_encode(['error' => 'Database connection failed: ' . $conn->connect_error]));
+        die(json_encode(['error' => 'Database connection failed. Please check server logs.']));
     }
     
-    // ADD THIS LINE BELOW
     $conn->set_charset("utf8mb4");
     
     return $conn;
@@ -26,7 +27,7 @@ function getDBConnection() {
 
 // Set headers for JSON API
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: *'); 
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 
