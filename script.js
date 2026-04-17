@@ -190,7 +190,7 @@ async function loadBestSellers() {
 
     try {
         // Use the absolute root path to avoid 404s
-        const response = await fetch('backend/products/best-sellers');
+        const response = await fetch('backend/index.php/products/best-sellers');
         
         if (!response.ok) {
             throw new Error(`Server returned ${response.status} - Check if XAMPP is running`);
