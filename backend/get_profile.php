@@ -2,16 +2,18 @@
 header('Content-Type: application/json');
 session_start();
 
-// Database connection
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db   = "zambosur_crafts"; 
+// Get database credentials from Render Environment Variables
+$host = getenv('DB_HOST');     // Usually something like 'dpg-xxx-a.singapore-postgres.render.com'
+$user = getenv('DB_USER');     // Your database username
+$pass = getenv('DB_PASS');     // Your database password
+$db   = getenv('DB_NAME');     // Your database name
+$port = getenv('DB_PORT') ?: '3306'; // Default MySQL port
 
-$conn = new mysqli($host, $user, $pass, $db);
+// If you are using MySQL on Render (via an external provider like Aiven or PlanetScale)
+$conn = new mysqli($host, $user, $pass, $db, $port);
 
 if ($conn->connect_error) {
-    echo json_encode(["success" => false, "message" => "Database connection failed"]);
+    echo json_encode(["success" => false, "message" => "Connection failed: " . $conn->connect_error]);
     exit;
 }
 
