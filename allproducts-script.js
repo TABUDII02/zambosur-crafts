@@ -446,7 +446,9 @@ async function updateCartBadge() {
     if (userId) {
         try {
             // Profile fetch to get the name
-            const profileRes = await fetch('https://zambosur-api-v2.onrender.com/auth/profile');
+           const profileRes = await fetch('https://zambosur-api-v2.onrender.com/auth/profile', {
+    credentials: 'include' // <--- ADD THIS
+});
             const profileData = await profileRes.json();
             
             if (profileData.success && navUserName) {
@@ -454,7 +456,9 @@ async function updateCartBadge() {
             }
 
             // Your existing cart count fetch
-            const res = await fetch('https://zambosur-api-v2.onrender.com/user/cart/count');
+            const res = await fetch('https://zambosur-api-v2.onrender.com/user/cart/count', {
+    credentials: 'include' // <--- ADD THIS
+});
             const data = await res.json();
             if (data.success) {
                 totalItems = data.count;
@@ -478,7 +482,9 @@ async function refreshNavProfile() {
     if (!nameSpan) return;
 
     try {
-        const response = await fetch('https://zambosur-api-v2.onrender.com/auth/profile');
+        const response = await fetch('https://zambosur-api-v2.onrender.com/auth/profile'), {
+         credentials: 'include'
+         });
         const result = await response.json();
 
         if (result.success) {
@@ -506,7 +512,10 @@ if (logoutBtn) {
     logoutBtn.addEventListener('click', async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('https://zambosur-api-v2.onrender.com/auth/logout', { method: 'POST' });
+            await fetch('https://zambosur-api-v2.onrender.com/auth/logout', { 
+                method: 'POST',
+                credentials: 'include' // <--- REQUIRED to clear the session on Render
+            });
             const result = await response.json();
             
             if (result.success) {
