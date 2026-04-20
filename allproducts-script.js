@@ -118,7 +118,8 @@ async function quickAddToCart(product) {
         const response = await fetch('https://zambosur-api-v2.onrender.com/user/cart/add', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(cartData)
+            body: JSON.stringify(cartData),
+            credentials: 'include'
         });
 
         const result = await response.json();
@@ -317,7 +318,8 @@ function openQuickView(id, products) {
                     const response = await fetch('https://zambosur-api-v2.onrender.com/auth/signup', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ fullname, email, password })
+                        body: JSON.stringify({ fullname, email, password }),
+                        credentials: 'include'
                     });
 
                     const data = await response.json();
@@ -356,7 +358,8 @@ function openQuickView(id, products) {
                     const response = await fetch('https://zambosur-api-v2.onrender.com/auth/login', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ email, password })
+                        body: JSON.stringify({ email, password }),
+                        credentials: 'include'
                     });
 
                     const data = await response.json();
