@@ -787,7 +787,7 @@ async function syncWithDatabase(action, data) {
     const endpoint = action === 'cart' ? '/user/cart/add' : `/user/${action}/add`;
 
     try {
-        const response = await fetch(`https://zambosur-api-v2.onrender.com ${endpoint}`, {
+        const response = await fetch(`https://zambosur-api-v2.onrender.com${endpoint}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
