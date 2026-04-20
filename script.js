@@ -781,32 +781,36 @@ function updateQuantity(change) {
     }
 }
 
-async function syncWithDatabase(endpoint, payload) {
-    try {
-        const response = await fetch(`https://zambosur-api-v2.onrender.com/user/${endpoint}/add`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
+async function syncWithDatabase(action, data) {
+    const API_BASE = "https://zambosur-api-v2.onrender.com";
+    
+    // Map your actions to your new clean URL structure
+    const endpoint = action === 'cart' ? '/user/cart/add' : `/user/${action}/add`;
 
-        // 1. Check if the response is actually OK before parsing
-        if (!response.ok && response.status !== 401) {
-            const errorText = await response.text(); // Get the raw error
-            console.error("Server Error:", errorText);
-            return false;
-        }
+    try {
+        const response = await fetch(`${API_BASE}${endpoint}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data),
+            // CRITICAL: This allows the backend to see your PHP Session
+            credentials: 'include' 
+        });
 
         const result = await response.json();
         
-        if (response.status === 401) {
-            alert('Please login to continue');
-            if (typeof openAuthModal === 'function') openAuthModal('signin');
+        if (result.error === "Please login to continue") {
+            // If the session expired on the server, clear local storage and ask for login
+            localStorage.removeItem('zambosur_user_id');
+            alert("Your session has expired. Please log in again.");
+            openAuthModal('signin');
             return false;
         }
-        
+
         return result.success;
-    } catch (error) {
-        console.error(`Error syncing ${endpoint}:`, error);
+    } catch (err) {
+        console.error("Sync error:", err);
         return false;
     }
 }
