@@ -18,7 +18,10 @@ async function loadAllProducts() {
     productGrid.innerHTML = '';
 
     try {
-        const response = await fetch('https://zambosur-api-v2.onrender.com/products');
+        const response = await fetch('https://zambosur-api-v2.onrender.com/products', {
+         method: 'GET',
+         credentials: 'include'
+         });
         cachedProducts = await response.json();
 
         loadingState.style.display = 'none';
