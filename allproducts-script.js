@@ -482,13 +482,13 @@ async function refreshNavProfile() {
     if (!nameSpan) return;
 
     try {
-        const response = await fetch('https://zambosur-api-v2.onrender.com/auth/profile'), {
-         credentials: 'include'
-         });
+        // Corrected the parenthesis and comma here
+        const response = await fetch('https://zambosur-api-v2.onrender.com/auth/profile', {
+            credentials: 'include'
+        });
         const result = await response.json();
 
         if (result.success) {
-            // Update the 'Guest' text to the actual name
             nameSpan.textContent = result.data.name || result.data.full_name;
         } else {
             nameSpan.textContent = "Guest";
@@ -497,7 +497,6 @@ async function refreshNavProfile() {
         console.error("Profile sync failed:", error);
     }
 }
-
 // Run this when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     refreshNavProfile();
@@ -512,15 +511,16 @@ if (logoutBtn) {
     logoutBtn.addEventListener('click', async (e) => {
         e.preventDefault();
         try {
-            await fetch('https://zambosur-api-v2.onrender.com/auth/logout', { 
+            const response = await fetch('https://zambosur-api-v2.onrender.com/auth/logout', { 
                 method: 'POST',
-                credentials: 'include' // <--- REQUIRED to clear the session on Render
+                credentials: 'include' 
             });
-            const result = await response.json();
+            const result = await response.json(); // Now 'response' is defined
             
             if (result.success) {
                 localStorage.removeItem('zambosur_user_id');
-                window.location.reload(); // Refresh to reset UI
+                localStorage.removeItem('zambosur_user_name');
+                window.location.reload(); 
             }
         } catch (error) {
             console.error("Logout failed:", error);
