@@ -223,7 +223,8 @@ async function quickAddToCart(product) {
         const response = await fetch('https://zambosur-api-v2.onrender.com/user/cart/add', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(cartData)
+            body: JSON.stringify(cartData),
+            credentials: 'include'
         });
 
         const result = await response.json();
@@ -253,7 +254,9 @@ async function updateCartBadge() {
     if (userId) {
         try {
             // Profile fetch to get the name
-            const profileRes = await fetch('https://zambosur-api-v2.onrender.com/auth/profile');
+           const response = await fetch('https://zambosur-api-v2.onrender.com/products', {
+    credentials: 'include' // <--- ADD THIS HERE
+});
             const profileData = await profileRes.json();
             
             if (profileData.success && navUserName) {
