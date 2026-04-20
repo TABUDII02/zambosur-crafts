@@ -27,7 +27,7 @@ async function loadAllProducts() {
             return;
         }
 
-        updateStats(cachedProducts);
+        //updateStats(cachedProducts);
         renderProducts(cachedProducts);
     } catch (err) {
         console.error('Error loading products:', err);
