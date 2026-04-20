@@ -408,6 +408,7 @@ if (signInBtn) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
+        credentials: 'include'
     });
 
     // Parse the JSON regardless of response status
