@@ -10,7 +10,7 @@ async function fetchOrders(filter = 'all') {
     const container = document.getElementById('ordersContainer');
     
     try {
-        const response = await fetch(`backend/get_orders.php?status=${filter}`);
+        const response = await fetch(`https://zambosur-api-v2.onrender.com/get_orders.php?status=${filter}`);
         const result = await response.json();
 
         if (result.success && result.orders.length > 0) {
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     async function fetchOrders() {
         try {
-            const response = await fetch('/zambosur_craft/backend/index.php/api/user/orders/all');
+            const response = await fetch('https://zambosur-api-v2.onrender.com/user/orders/all');
             const result = await response.json();
 
             if (result.success) {
