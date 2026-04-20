@@ -1,8 +1,8 @@
 /**
  * ZamboSur Crafts Admin Logic
  */
-const API_URL = window.location.origin + '/zambosur_craft/backend/index.php';
-const API_BASE = '../backend/index.php';
+const API_URL = window.location.origin + 'https://zambosur-api-v2.onrender.com';
+const API_BASE = 'https://zambosur-api-v2.onrender.com';
 
 // 1. MAIN NAVIGATION FUNCTION
 // Added 'event' parameter to handle link behavior
@@ -534,7 +534,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 2. Send to PHP
             // Replace with your actual ngrok URL and the correct path to index.php
-            fetch('/zambosur_craft/backend/index.php/api/admin/products/add', {
+            fetch('https://zambosur-api-v2.onrender.comadmin/products/add', {
                 method: 'POST',
                 headers: {
                     'ngrok-skip-browser-warning': 'true'
