@@ -190,7 +190,10 @@ async function loadBestSellers() {
 
     try {
         // Use the absolute root path to avoid 404s
-       const response = await fetch('https://zambosur-api-v2.onrender.com/products/best-sellers');
+       const response = await fetch('https://zambosur-api-v2.onrender.com/products/best-sellers', {
+            method: 'GET',
+            credentials: 'include' // <--- THIS IS THE FIX
+        });
         
         if (!response.ok) {
             throw new Error(`Server returned ${response.status} - Check if XAMPP is running`);
@@ -340,6 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ fullname, email, password })
+                    credentials: 'include' 
                 });
 
                 const data = await response.json();
@@ -408,6 +412,7 @@ if (signInBtn) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
+        credentials: 'include' 
     });
 
     // Parse the JSON regardless of response status
