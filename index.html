@@ -876,7 +876,7 @@
         };
 
         try {
-          const res = await fetch("backend/index.php/auth/social-login", {
+          const res = await fetch("https://zambosur-api-v2.onrender.com/auth/social-login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(userData),
@@ -976,7 +976,7 @@
       // Reusable fetch function for both Google and FB
       async function sendSocialDataToBackend(userData) {
         try {
-          const res = await fetch("backend/index.php/auth/social-login", {
+          const res = await fetch("https://zambosur-api-v2.onrender.com/auth/social-login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(userData),
