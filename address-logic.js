@@ -31,7 +31,7 @@ document.getElementById('addressForm').addEventListener('submit', async (e) => {
 };
 
     try {
-        const response = await fetch('/zambosur_craft/backend/index.php/api/user/addresses/add', {
+        const response = await fetch('https://zambosur-api-v2.onrender.com/user/addresses/add', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData)
@@ -62,7 +62,7 @@ async function loadAddresses() {
     if (!defaultContainer || !shippingContainer || !billingContainer) return;
 
     try {
-        const response = await fetch('/zambosur_craft/backend/index.php/api/user/addresses/all');
+        const response = await fetch('https://zambosur-api-v2.onrender.com/user/addresses/all');
         
         if (!response.ok) {
             const errorText = await response.text();
