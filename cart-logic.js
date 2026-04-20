@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function loadCart() {
     const badge = document.getElementById('cartCount');
     try {
-        const response = await fetch('/zambosur_craft/backend/index.php/api/user/cart/all');
+        const response = await fetch('https://zambosur-api-v2.onrender.com/user/cart/all');
         const result = await response.json();
 
         if (result.success && result.items) {
@@ -76,7 +76,7 @@ async function calculateTotals(items) {
     let shippingFee = 150; 
 
     try {
-        const addrRes = await fetch('/zambosur_craft/backend/index.php/api/user/addresses/all');
+        const addrRes = await fetch('https://zambosur-api-v2.onrender.com/user/addresses/all');
         const addrData = await addrRes.json();
         const defaultAddr = addrData.addresses.find(a => parseInt(a.is_default) === 1);
         
@@ -110,7 +110,7 @@ async function calculateTotals(items) {
 // Add 'window.' to make them globally accessible to your onclick attributes
 window.changeQty = async function(productId, change) {
     try {
-        const response = await fetch('/zambosur_craft/backend/index.php/api/user/cart/update-qty', {
+        const response = await fetch('https://zambosur-api-v2.onrender.com/user/cart/update-qty', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ product_id: productId, change: change })
@@ -128,7 +128,7 @@ window.removeItem = async function(productId) {
     if(!confirm("Remove this item from your cart?")) return;
     
     try {
-        const response = await fetch('/zambosur_craft/backend/index.php/api/user/cart/remove', {
+        const response = await fetch('https://zambosur-api-v2.onrender.com/user/cart/remove', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ product_id: productId })
