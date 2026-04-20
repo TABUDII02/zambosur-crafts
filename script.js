@@ -342,7 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch('https://zambosur-api-v2.onrender.com/auth/signup', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ fullname, email, password })
+                    body: JSON.stringify({ fullname, email, password }),
                     credentials: 'include' 
                 });
 
@@ -411,7 +411,7 @@ if (signInBtn) {
     const response = await fetch('https://zambosur-api-v2.onrender.com/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password }),
         credentials: 'include' 
     });
 
