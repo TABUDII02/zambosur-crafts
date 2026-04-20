@@ -782,13 +782,12 @@ function updateQuantity(change) {
 }
 
 async function syncWithDatabase(action, data) {
-    const API_BASE = "https://zambosur-api-v2.onrender.com";
     
     // Map your actions to your new clean URL structure
     const endpoint = action === 'cart' ? '/user/cart/add' : `/user/${action}/add`;
 
     try {
-        const response = await fetch(`${API_BASE}${endpoint}`, {
+        const response = await fetch(`https://zambosur-api-v2.onrender.com ${endpoint}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
