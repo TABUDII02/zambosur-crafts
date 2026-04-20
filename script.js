@@ -191,6 +191,7 @@ async function loadBestSellers() {
     try {
         // Use the absolute root path to avoid 404s
        const response = await fetch('https://zambosur-api-v2.onrender.com/products/best-sellers');
+        method: 'GET'
         credentials: 'include'
         
         if (!response.ok) {
