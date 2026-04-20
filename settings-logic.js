@@ -6,7 +6,7 @@ document.getElementById('saveSettings').addEventListener('click', async () => {
     };
 
     try {
-        const response = await fetch('backend/update_settings.php', {
+        const response = await fetch('https://zambosur-api-v2.onrender.com/update_settings.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(settings)
