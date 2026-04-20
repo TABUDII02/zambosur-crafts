@@ -12,7 +12,7 @@ document.getElementById('passwordChangeForm').addEventListener('submit', async (
 
     try {
         // Point to your centralized index.php API
-        const response = await fetch('/zambosur_craft/backend/index.php/api/user/security/update-password', {
+        const response = await fetch('https://zambosur-api-v2.onrender.com/user/security/update-password', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' }, // Fixed colon here
             body: JSON.stringify({
