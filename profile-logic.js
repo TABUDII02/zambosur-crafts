@@ -23,14 +23,18 @@ let isEditMode = false;
 async function fetchProfileData() {
     try {
         // 1. Fetch User Profile
-        const response = await fetch('https://zambosur-api-v2.onrender.com/auth/profile');
+      const response = await fetch('https://zambosur-api-v2.onrender.com/auth/profile', {
+            credentials: 'include' // <--- REQUIRED
+        });
         const result = await response.json();
 
         if (result.success) {
             updateProfileUI(result.data);
 
             // 2. Fetch Address Book to find the Default
-            const addrResponse = await fetch('https://zambosur-api-v2.onrender.com/user/addresses/all');
+           const addrResponse = await fetch('https://zambosur-api-v2.onrender.com/user/addresses/all', {
+                credentials: 'include' // <--- REQUIRED
+            });
             const addrResult = await addrResponse.json();
 
             if (addrResult.success && addrResult.addresses) {
@@ -103,7 +107,8 @@ async function toggleEditMode() {
             const response = await fetch('https://zambosur-api-v2.onrender.com/user/profile/update', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ phone: newPhone, address: newAddress })
+                body: JSON.stringify({ phone: newPhone, address: newAddress }),
+                credentials: 'include'
             });
 
             const result = await response.json();
@@ -125,7 +130,16 @@ async function toggleEditMode() {
 function handleLogout(e) {
     e.preventDefault();
     if (confirm("Are you sure you want to logout?")) {
-        fetch('/zambosur_craft/backend/index.php/api/auth/logout').then(() => {
+        // Point to your actual Render API
+        fetch('https://zambosur-api-v2.onrender.com/auth/logout', {
+            method: 'POST', // Usually logout should be POST
+            credentials: 'include'
+        }).then(() => {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }).catch(err => {
+            console.error("Logout failed:", err);
+            // Still clear local storage and redirect even if fetch fails
             localStorage.clear();
             window.location.href = 'index.html';
         });
