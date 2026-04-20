@@ -211,29 +211,31 @@ function setupBasketFilters() {
 async function quickAddToCart(product) {
     const userId = localStorage.getItem('zambosur_user_id');
     
-    // 1. Prepare the data (exactly what your backend expects)
     const cartData = {
         user_id: userId,
-        product_id: product.id || product.product_id,
-        quantity: 1 // Default to 1 for quick-add
+        product_id: product.id,
+        quantity: 1 
     };
 
     try {
-        // 2. Call your backend directly
         const response = await fetch('https://zambosur-api-v2.onrender.com/user/cart/add', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(cartData),
-            credentials: 'include'
+            // --- THIS PREVENTS THE 401 ERROR ---
+            credentials: 'include' 
         });
+
+        // Check if the response is actually a 401 before parsing JSON
+        if (response.status === 401) {
+            alert("Your session expired. Please sign in again.");
+            return openAuthModal('signin');
+        }
 
         const result = await response.json();
 
         if (result.success) {
-            // 3. Update the UI (the red badge)
-            if (typeof updateCartBadge === 'function') {
-                updateCartBadge();
-            }
+            updateCartBadge();
             alert(`${product.name} added to cart!`);
         } else {
             console.error("Cart error:", result.error);
