@@ -36,7 +36,7 @@ async function loadAllProducts() {
     }
 }
 
-function updateStats(products) {
+/*function updateStats(products) {
     if (products.length === 0) return;
 
     const prices = products.map(p => parseFloat(p.price));
@@ -46,7 +46,7 @@ function updateStats(products) {
     document.getElementById('bestSellers').textContent = products.filter(p => p.is_best_seller).length;
     document.getElementById('avgPrice').textContent = 'Php ' + average.toFixed(0);
     document.getElementById('productCount').textContent = products.length;
-}
+}*/
 function renderProducts(products) {
     const productGrid = document.getElementById('productGrid');
     const emptyState = document.getElementById('emptyState');
