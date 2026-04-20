@@ -23,14 +23,14 @@ let isEditMode = false;
 async function fetchProfileData() {
     try {
         // 1. Fetch User Profile
-        const response = await fetch('/zambosur_craft/backend/index.php/api/auth/profile');
+        const response = await fetch('https://zambosur-api-v2.onrender.com/auth/profile');
         const result = await response.json();
 
         if (result.success) {
             updateProfileUI(result.data);
 
             // 2. Fetch Address Book to find the Default
-            const addrResponse = await fetch('/zambosur_craft/backend/index.php/api/user/addresses/all');
+            const addrResponse = await fetch('https://zambosur-api-v2.onrender.com/user/addresses/all');
             const addrResult = await addrResponse.json();
 
             if (addrResult.success && addrResult.addresses) {
@@ -100,7 +100,7 @@ async function toggleEditMode() {
         const newAddress = document.getElementById('inputAddress').value;
 
         try {
-            const response = await fetch('/zambosur_craft/backend/index.php/api/user/profile/update', {
+            const response = await fetch('https://zambosur-api-v2.onrender.com/user/profile/update', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ phone: newPhone, address: newAddress })
