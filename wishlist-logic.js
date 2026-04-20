@@ -71,7 +71,8 @@ async function removeFromWishlist(id, source) {
         const response = await fetch(`https://zambosur-api-v2.onrender.com/user/${endpoint}/remove`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ product_id: id })
+            body: JSON.stringify({ product_id: id }),
+            credentials: 'include'
         });
 
         const result = await response.json();
@@ -91,7 +92,8 @@ async function moveToCart(id, source = 'wishlist') {
         const response = await fetch('https://zambosur-api-v2.onrender.com/user/cart/add', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ product_id: id, quantity: 1 })
+            body: JSON.stringify({ product_id: id, quantity: 1 }),
+            credentials: 'include'
         });
 
         const result = await response.json();
