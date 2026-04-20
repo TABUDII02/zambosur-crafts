@@ -336,7 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
             signUpBtn.textContent = 'Creating Account...';
 
             try {
-                const response = await fetch('https://zambosur-api-v2.onrender.com/index.php/api/auth/signup', {
+                const response = await fetch('https://zambosur-api-v2.onrender.com/auth/signup', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ fullname, email, password })
@@ -404,7 +404,7 @@ if (signInBtn) {
         signInBtn.textContent = 'Signing In...';
 
         try {
-    const response = await fetch('https://zambosur-api-v2.onrender.com/index.php/api/auth/login', {
+    const response = await fetch('https://zambosur-api-v2.onrender.com/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
