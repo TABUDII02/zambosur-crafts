@@ -14,7 +14,7 @@ async function loadBasketProducts() {
     if (productGrid) productGrid.innerHTML = '';
 
     try {
-        const response = await fetch('backend/index.php/api/products');
+        const response = await fetch('https://zambosur-api-v2.onrender.com/products');
         const allProducts = await response.json();
         
         // FIX: Filter for "Baskets" instead of "Pillowcase"
@@ -220,7 +220,7 @@ async function quickAddToCart(product) {
 
     try {
         // 2. Call your backend directly
-        const response = await fetch('/zambosur_craft/backend/index.php/api/user/cart/add', {
+        const response = await fetch('https://zambosur-api-v2.onrender.com/user/cart/add', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(cartData)
@@ -253,7 +253,7 @@ async function updateCartBadge() {
     if (userId) {
         try {
             // Profile fetch to get the name
-            const profileRes = await fetch('/zambosur_craft/backend/index.php/api/auth/profile');
+            const profileRes = await fetch('https://zambosur-api-v2.onrender.com/auth/profile');
             const profileData = await profileRes.json();
             
             if (profileData.success && navUserName) {
@@ -261,7 +261,7 @@ async function updateCartBadge() {
             }
 
             // Your existing cart count fetch
-            const res = await fetch('/zambosur_craft/backend/index.php/api/user/cart/count');
+            const res = await fetch('https://zambosur-api-v2.onrender.com/user/cart/count');
             const data = await res.json();
             if (data.success) {
                 totalItems = data.count;
