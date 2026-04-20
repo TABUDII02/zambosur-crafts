@@ -336,7 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
             signUpBtn.textContent = 'Creating Account...';
 
             try {
-                const response = await fetch('/zambosur_craft/backend/index.php/api/auth/signup', {
+                const response = await fetch('https://zambosur-api-v2.onrender.com/index.php/api/auth/signup', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ fullname, email, password })
@@ -404,7 +404,7 @@ if (signInBtn) {
         signInBtn.textContent = 'Signing In...';
 
         try {
-    const response = await fetch('/zambosur_craft/backend/index.php/api/auth/login', {
+    const response = await fetch('https://zambosur-api-v2.onrender.com/index.php/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -532,7 +532,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function fetchProductAndOpenOverlay(productId) {
     try {
         // Use the path we know works
-        const response = await fetch('backend/index.php/admin/products');
+        const response = await fetch('https://zambosur-api-v2.onrender.com/index.php/admin/products');
         
         if (!response.ok) {
             throw new Error(`Server returned ${response.status}`);
@@ -783,7 +783,7 @@ function updateQuantity(change) {
 
 async function syncWithDatabase(endpoint, payload) {
     try {
-        const response = await fetch(`/zambosur_craft/backend/index.php/api/user/${endpoint}/add`, {
+        const response = await fetch(`https://zambosur-api-v2.onrender.com/index.php/api/user/${endpoint}/add`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
