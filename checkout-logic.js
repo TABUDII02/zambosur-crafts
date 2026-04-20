@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function loadCheckoutDetails() {
     try {
-        const profileRes = await fetch('/zambosur_craft/backend/index.php/api/auth/profile');
+        const profileRes = await fetch('https://zambosur-api-v2.onrender.com/auth/profile');
         const user = await profileRes.json();
         
         if(user.success) {
@@ -44,7 +44,7 @@ async function loadCheckoutDetails() {
     } catch(e) { console.error("Profile load failed", e); }
 
     try {
-        const cartResponse = await fetch('/zambosur_craft/backend/index.php/api/user/cart/all');
+        const cartResponse = await fetch('https://zambosur-api-v2.onrender.com/user/cart/all');
         const cart = await cartResponse.json();
         
         if(cart.success && cart.items.length > 0) {
@@ -127,7 +127,7 @@ function renderSummaryItems(items) {
     if (!container) return;
 
     container.innerHTML = items.map(item => {
-        const imagePath = item.image_url ? `/zambosur_craft/assets/products/${item.image_url}` : 'placeholder.jpg';
+        const imagePath = item.image_url ? `https://zambosur-api-v2.onrender.com/assets/products/${item.image_url}` : 'placeholder.jpg';
         return `
             <div class="mini-cart-item">
                 <img src="${imagePath}" alt="${item.product_name}" onerror="this.src='placeholder.jpg'">
@@ -200,7 +200,7 @@ async function handlePlaceOrder() {
     };
 
     try {
-        const response = await fetch('/zambosur_craft/backend/index.php/api/user/order/create', {
+        const response = await fetch('https://zambosur-api-v2.onrender.com/user/order/create', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(orderData)
@@ -232,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function loadUserProfile() {
     try {
-        const response = await fetch('backend/index.php/api/user/profile');
+        const response = await fetch('https://zambosur-api-v2.onrender.com/user/profile');
         const data = await response.json();
 
         if (data.success) {
