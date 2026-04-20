@@ -10,7 +10,9 @@ async function loadMalongProducts() {
     loadingState.style.display = 'flex';
     
     try {
-        const response = await fetch('https://zambosur-api-v2.onrender.com/products');
+       const response = await fetch('https://zambosur-api-v2.onrender.com/products', {
+            credentials: 'include' // Add this to be safe
+        });
         const data = await response.json();
 
         // Standardize data format
@@ -506,7 +508,7 @@ async function quickAddToCart(product) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(cartData),
-            credentials: 'include"
+            credentials: 'include'
         });
 
         const result = await response.json();
@@ -536,7 +538,9 @@ async function updateCartBadge() {
     if (userId) {
         try {
             // Profile fetch to get the name
-            const profileRes = await fetch('https://zambosur-api-v2.onrender.com/auth/profile');
+            const profileRes = await fetch('https://zambosur-api-v2.onrender.com/auth/profile', {
+        credentials: 'include' // ADD THIS
+    });
             const profileData = await profileRes.json();
             
             if (profileData.success && navUserName) {
@@ -544,7 +548,9 @@ async function updateCartBadge() {
             }
 
             // Your existing cart count fetch
-            const res = await fetch('https://zambosur-api-v2.onrender.com/user/cart/count');
+         const res = await fetch('https://zambosur-api-v2.onrender.com/user/cart/count', {
+        credentials: 'include' // ADD THIS
+    });
             const data = await res.json();
             if (data.success) {
                 totalItems = data.count;
