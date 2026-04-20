@@ -10,7 +10,7 @@ async function loadWishlistItems() {
 
     try {
         // ✅ ADDED: credentials: 'include' to ensure session cookies are sent
-        const response = await fetch('/zambosur_craft/backend/index.php/api/user/wishlist/all', {
+        const response = await fetch('https://zambosur-api-v2.onrender.com/user/wishlist/all', {
             method: 'GET',
             credentials: 'include' 
         });
@@ -68,7 +68,7 @@ async function removeFromWishlist(id, source) {
     const endpoint = source === 'wishlist' ? 'wishlist' : 'save';
 
     try {
-        const response = await fetch(`/zambosur_craft/backend/index.php/api/user/${endpoint}/remove`, {
+        const response = await fetch(`https://zambosur-api-v2.onrender.com/user/${endpoint}/remove`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ product_id: id })
@@ -88,7 +88,7 @@ async function removeFromWishlist(id, source) {
 async function moveToCart(id, source = 'wishlist') {
     try {
         // 1. Add to Cart
-        const response = await fetch('/zambosur_craft/backend/index.php/api/user/cart/add', {
+        const response = await fetch('https://zambosur-api-v2.onrender.com/user/cart/add', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ product_id: id, quantity: 1 })
