@@ -10,7 +10,9 @@ async function loadPillowcaseProducts() {
     const emptyState = document.getElementById('emptyState');
 
     try {
-        const response = await fetch('https://zambosur-api-v2.onrender.com/products');
+       const response = await fetch('https://zambosur-api-v2.onrender.com/products', {
+    credentials: 'include' // Add this
+});
         const result = await response.json();
         
         // FIX: Check if 'result' is the array itself, or if it's inside 'result.data'
@@ -253,36 +255,34 @@ function renderPillowcaseProducts(products) {
                 <span class="price">Php ${parseFloat(product.price).toLocaleString()}</span>
                 <div class="card-actions">
                     <button class="quick-view-btn" data-id="${product.id}">Quick View</button>
-                    <button class="add-to-cart-btn" onclick="addToCart(${product.id})">Add to Cart</button>
+                    <button class="add-to-cart-btn" data-id="${product.id}">Add to Cart</button>
                 </div>
             </div>
         </article>
     `).join('');
 
+    // Listener for Add to Cart
     document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-    btn.onclick = (e) => {
-        const pid = e.currentTarget.dataset.id;
-        
-        // 1. Get the User ID from local storage
-        const userId = localStorage.getItem('zambosur_user_id');
+        btn.onclick = (e) => {
+            const pid = e.currentTarget.dataset.id;
+            const userId = localStorage.getItem('zambosur_user_id');
 
-        // 2. If no user, show the login modal and STOP
-        if (!userId) {
-            if (typeof openAuthModal === 'function') {
-                openAuthModal('signin'); // Opens your existing modal from script.js
-            } else {
-                alert("Please sign in to add items to your cart.");
+            if (!userId) {
+                return typeof openAuthModal === 'function' ? openAuthModal('signin') : alert("Please sign in.");
             }
-            return; // Stop the function here so it doesn't try to fetch
-        }
 
-        // 3. If user is logged in, find the product and add it
-        const selected = products.find(p => p.id == pid || p.product_id == pid);
-        if (selected) {
-            quickAddToCart(selected);
-        }
-    };
-});
+            const selected = products.find(p => p.id == pid);
+            if (selected) quickAddToCart(selected);
+        };
+    });
+
+    // Listener for Quick View
+    document.querySelectorAll('.quick-view-btn').forEach(btn => {
+        btn.onclick = (e) => {
+            openQuickView(e.currentTarget.dataset.id, products);
+        };
+    });
+}
 
     // --- Quick View Logic ---
     document.querySelectorAll('.quick-view-btn').forEach(btn => {
@@ -459,10 +459,11 @@ async function quickAddToCart(product) {
     try {
         // 2. Call your backend directly
         const response = await fetch('https://zambosur-api-v2.onrender.com/user/cart/add', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(cartData)
-        });
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(cartData),
+    credentials: 'include' // Add this
+});
 
         const result = await response.json();
 
@@ -491,7 +492,9 @@ async function updateCartBadge() {
     if (userId) {
         try {
             // Profile fetch to get the name
-            const profileRes = await fetch('https://zambosur-api-v2.onrender.com/auth/profile');
+          const profileRes = await fetch('https://zambosur-api-v2.onrender.com/auth/profile', {
+        credentials: 'include' // ADD THIS
+    });
             const profileData = await profileRes.json();
             
             if (profileData.success && navUserName) {
@@ -499,7 +502,9 @@ async function updateCartBadge() {
             }
 
             // Your existing cart count fetch
-            const res = await fetch('https://zambosur-api-v2.onrender.com/user/cart/count');
+            const res = await fetch('https://zambosur-api-v2.onrender.com/user/cart/count', {
+        credentials: 'include' // ADD THIS
+    });
             const data = await res.json();
             if (data.success) {
                 totalItems = data.count;
