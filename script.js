@@ -783,7 +783,7 @@ function updateQuantity(change) {
 
 async function syncWithDatabase(endpoint, payload) {
     try {
-        const response = await fetch(`https://zambosur-api-v2.onrender.com/index.php/api/user/${endpoint}/add`, {
+        const response = await fetch(`https://zambosur-api-v2.onrender.com/user/${endpoint}/add`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
@@ -918,7 +918,7 @@ async function loadRelatedProducts(categoryId) {
     if (!relatedGrid) return;
     
     try {
-        const response = await fetch('backend/index.php/api/products');
+        const response = await fetch('https://zambosur-api-v2.onrender.com/products');
         
         if (!response.ok) {
             throw new Error('Failed to fetch products');
@@ -972,7 +972,7 @@ async function updateCartBadge() {
     if (userId) {
         // CASE A: Logged In - Fetch count from Database
         try {
-            const res = await fetch('/zambosur_craft/backend/index.php/api/user/cart/count');
+            const res = await fetch('https://zambosur-api-v2.onrender.com/user/cart/count');
             const data = await res.json();
             if (data.success) {
                 totalItems = data.count;
@@ -997,7 +997,7 @@ async function checkAuthAndRedirect(event, targetUrl) {
     event.preventDefault(); // Stop the link from opening immediately
     
     try {
-        const response = await fetch('/zambosur_craft/backend/index.php/api/auth/profile');
+        const response = await fetch('https://zambosur-api-v2.onrender.com/auth/profile');
         const result = await response.json();
 
         if (result.success) {
@@ -1045,7 +1045,7 @@ async function sendMessage() {
 
     try {
         // 3. Send to your PHP backend
-        const response = await fetch(`/zambosur_craft/backend/index.php/chat`, {
+        const response = await fetch(`https://zambosur-api-v2.onrender.com/chat`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json' // CRITICAL: Tell PHP to expect JSON
