@@ -42,7 +42,7 @@ if (contactForm) {
         const formData = { firstName, lastName, email, message };
 
         try {
-            const response = await fetch('backend/index.php/api/contact', {
+            const response = await fetch('https://zambosur-api-v2.onrender.com/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
@@ -532,7 +532,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function fetchProductAndOpenOverlay(productId) {
     try {
         // Use the path we know works
-        const response = await fetch('https://zambosur-api-v2.onrender.com/index.php/admin/products');
+        const response = await fetch('https://zambosur-api-v2.onrender.com/products');
         
         if (!response.ok) {
             throw new Error(`Server returned ${response.status}`);
