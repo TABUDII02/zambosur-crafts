@@ -5,7 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
 async function loadCart() {
     const badge = document.getElementById('cartCount');
     try {
-        const response = await fetch('https://zambosur-api-v2.onrender.com/user/cart/all');
+        const response = await fetch('https://zambosur-api-v2.onrender.com/user/cart/all', {
+    credentials: 'include' 
+});
         const result = await response.json();
 
         if (result.success && result.items) {
@@ -76,7 +78,9 @@ async function calculateTotals(items) {
     let shippingFee = 150; 
 
     try {
-        const addrRes = await fetch('https://zambosur-api-v2.onrender.com/user/addresses/all');
+        const addrRes = await fetch('https://zambosur-api-v2.onrender.com/user/addresses/all', {
+    credentials: 'include'
+});
         const addrData = await addrRes.json();
         const defaultAddr = addrData.addresses.find(a => parseInt(a.is_default) === 1);
         
@@ -113,7 +117,8 @@ window.changeQty = async function(productId, change) {
         const response = await fetch('https://zambosur-api-v2.onrender.com/user/cart/update-qty', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ product_id: productId, change: change })
+            body: JSON.stringify({ product_id: productId, change: change }),
+            credentials: 'include'
         });
         const result = await response.json();
         if (result.success) {
