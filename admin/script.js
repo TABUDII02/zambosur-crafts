@@ -243,6 +243,57 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+async function loadCategories() {
+    const tableContainer = document.getElementById('categoriesTable');
+    
+    try {
+        const res = await fetch(`${API_BASE}/admin/categories`, {
+            credentials: 'include'
+        });
+        const data = await res.json();
+        
+        if (!data || data.length === 0) {
+            tableContainer.innerHTML = '<p class="empty-msg">No categories found.</p>';
+            return;
+        }
+
+        let html = `
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Category Name</th>
+                        <th style="text-align: center;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+        data.forEach(c => {
+            html += `
+                <tr>
+                    <td class="id-column">#${c.id}</td>
+                    <td class="name-column"><strong>${c.name}</strong></td>
+                    <td class="actions-column">
+                        <div class="table-actions">
+                            <button class="edit-btn" onclick="openEditCategory(${c.id}, '${c.name}')">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="delete-btn" onclick="deleteCategory(${c.id})">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>`;
+        });
+
+        tableContainer.innerHTML = html + '</tbody></table>';
+        
+    } catch (err) {
+        console.error("Error loading categories:", err);
+        tableContainer.innerHTML = '<p class="error-msg">Failed to load categories. Please check your connection.</p>';
+    }
+}
+
 // Function to load Customers/Users from the API
 async function loadCustomers() {
     const usersTable = document.getElementById('usersTable');
