@@ -439,15 +439,32 @@ async function loadOrders() {
     }
 }
 async function updateStatus(orderId, newStatus) {
+    // Optional: Confirm with the admin, especially for "Delivered"
+    if (newStatus === 'Delivered') {
+        if (!confirm(`Marking Order #${orderId} as Delivered will send an arrival notification to the customer. Proceed?`)) {
+            loadOrders(); // Refresh to reset select box
+            return;
+        }
+    }
+
     try {
-        await fetch(`${API_BASE}/admin/orders/update`, {
+        const res = await fetch(`${API_BASE}/admin/orders/update`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ order_id: orderId, status: newStatus }),
             credentials: 'include'
         });
-        loadOrders();
-    } catch (err) { console.error(err); }
+        
+        const result = await res.json();
+        if (result.success) {
+            console.log(`Order ${orderId} updated to ${newStatus}`);
+            loadOrders(); // Refresh table to show updated badges
+        } else {
+            alert("Failed to update status.");
+        }
+    } catch (err) {
+        console.error("Error updating status:", err);
+    }
 }
 
 // 6. INITIALIZATION & MODAL UTILS
