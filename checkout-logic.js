@@ -24,7 +24,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function loadCheckoutDetails() {
     try {
-        const profileRes = await fetch('https://zambosur-api-v2.onrender.com/auth/profile');
+        const profileRes = await fetch('https://zambosur-api-v2.onrender.com/auth/profile', {
+            credentials: 'include' 
+        });
         const user = await profileRes.json();
         
         if(user.success) {
@@ -44,7 +46,9 @@ async function loadCheckoutDetails() {
     } catch(e) { console.error("Profile load failed", e); }
 
     try {
-        const cartResponse = await fetch('https://zambosur-api-v2.onrender.com/user/cart/all');
+        const cartResponse = await fetch('https://zambosur-api-v2.onrender.com/user/cart/all', {
+            credentials: 'include'
+        });
         const cart = await cartResponse.json();
         
         if(cart.success && cart.items.length > 0) {
@@ -203,7 +207,8 @@ async function handlePlaceOrder() {
         const response = await fetch('https://zambosur-api-v2.onrender.com/user/order/create', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(orderData)
+            body: JSON.stringify(orderData),
+            credentials: 'include'
         });
 
         const result = await response.json();
@@ -232,7 +237,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function loadUserProfile() {
     try {
-        const response = await fetch('https://zambosur-api-v2.onrender.com/user/profile');
+        const response = await fetch('https://zambosur-api-v2.onrender.com/user/profile', {
+            credentials: 'include'
+        });
         const data = await response.json();
 
         if (data.success) {
