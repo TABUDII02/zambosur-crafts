@@ -296,70 +296,83 @@ async function loadCategories() {
 
 // Function to load Customers/Users from the API
 async function loadCustomers() {
-    const usersTable = document.getElementById('usersTable');
-    if (!usersTable) return;
-
+    const tableContainer = document.getElementById('usersTable'); // Or 'customersTable' if you added a new ID
+    
     try {
-        const res = await fetch(`${API_BASE}/admin/customers`, { 
-            credentials: 'include' 
+        // Updated endpoint to specifically fetch customer records
+        const res = await fetch(`${API_BASE}/admin/customers`, {
+            credentials: 'include'
         });
-        
         const data = await res.json();
-
-        if (!Array.isArray(data)) {
-            usersTable.innerHTML = `<p class="error-msg">Error: ${data.error || 'Failed to load customers'}</p>`;
+        
+        if (!data || data.length === 0) {
+            tableContainer.innerHTML = '<p class="empty-msg">No customer records found.</p>';
             return;
         }
 
         let html = `
-            <table class="styled-table">
+            <table class="admin-table">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Actions</th>
+                        <th>Full Name</th>
+                        <th>Contact No.</th>
+                        <th>Address</th>
+                        <th style="text-align: center;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>`;
 
-        data.forEach(customer => {
+        data.forEach(c => {
             html += `
-                <tr id="customer-${customer.id}">
-                    <td>${customer.id}</td>
-                    <td>${customer.first_name} ${customer.last_name}</td>
-                    <td>${customer.email}</td>
-                    <td>
-                        <button class="delete-btn" onclick="deleteCustomer(${customer.id})">Delete</button>
+                <tr>
+                    <td class="id-column">#${c.id || c.customer_id}</td>
+                    <td><strong>${c.first_name} ${c.last_name}</strong></td>
+                    <td>${c.phone || 'N/A'}</td>
+                    <td style="font-size: 0.85rem; color: #666;">${c.address || 'No address provided'}</td>
+                    <td class="actions-column">
+                        <div class="table-actions">
+                            <button class="delete-btn" onclick="deleteCustomer(${c.id || c.customer_id}, '${c.first_name}')">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </div>
                     </td>
                 </tr>`;
         });
 
-        usersTable.innerHTML = html + '</tbody></table>';
+        tableContainer.innerHTML = html + '</tbody></table>';
+        
     } catch (err) {
         console.error("Error loading customers:", err);
-        usersTable.innerHTML = `<p>Connection error. Please try again.</p>`;
+        tableContainer.innerHTML = '<p class="error-msg">Failed to load customer database.</p>';
     }
 }
 
 // Optional: Add the delete function if you haven't yet
-async function deleteCustomer(id) {
-    if (confirm("Are you sure you want to delete this customer?")) {
-        try {
-            const res = await fetch(`${API_BASE}/admin/customers/delete`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id: id }),
-                credentials: 'include'
-            });
-            
-            if (res.ok) {
-                document.getElementById(`customer-${id}`).remove();
-                alert("Customer removed.");
-            }
-        } catch (err) {
-            console.error("Delete failed:", err);
+async function deleteCustomer(customerId, name) {
+    if (!confirm(`Warning: Are you sure you want to delete customer "${name}"? This will remove their profile and contact information.`)) {
+        return;
+    }
+
+    try {
+        const res = await fetch(`${API_BASE}/admin/customers/delete`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: customerId }),
+            credentials: 'include'
+        });
+
+        const result = await res.json();
+
+        if (result.success) {
+            alert("Customer record deleted.");
+            loadCustomers(); // Refresh the list
+        } else {
+            alert("Error: " + (result.error || "Could not delete customer."));
         }
+    } catch (err) {
+        console.error("Delete customer error:", err);
+        alert("Server error while trying to delete.");
     }
 }
 // 5. CUSTOMER & ORDER LOGIC
