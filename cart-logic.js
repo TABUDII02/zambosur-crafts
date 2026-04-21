@@ -136,7 +136,8 @@ window.removeItem = async function(productId) {
         const response = await fetch('https://zambosur-api-v2.onrender.com/user/cart/remove', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ product_id: productId })
+            body: JSON.stringify({ product_id: productId }),
+            credentials: 'include'
         });
         const result = await response.json();
         if (result.success) {
