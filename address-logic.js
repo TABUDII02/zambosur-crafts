@@ -66,7 +66,7 @@ async function loadAddresses() {
         const response = await fetch('https://zambosur-api-v2.onrender.com/user/addresses/all', {
             method: 'GET',
             credentials: 'include'
-                )};
+        });
         
         if (!response.ok) {
             const errorText = await response.text();
