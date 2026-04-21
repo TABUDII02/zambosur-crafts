@@ -243,6 +243,74 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Function to load Customers/Users from the API
+async function loadCustomers() {
+    const usersTable = document.getElementById('usersTable');
+    if (!usersTable) return;
+
+    try {
+        const res = await fetch(`${API_BASE}/admin/customers`, { 
+            credentials: 'include' 
+        });
+        
+        const data = await res.json();
+
+        if (!Array.isArray(data)) {
+            usersTable.innerHTML = `<p class="error-msg">Error: ${data.error || 'Failed to load customers'}</p>`;
+            return;
+        }
+
+        let html = `
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+        data.forEach(customer => {
+            html += `
+                <tr id="customer-${customer.id}">
+                    <td>${customer.id}</td>
+                    <td>${customer.first_name} ${customer.last_name}</td>
+                    <td>${customer.email}</td>
+                    <td>
+                        <button class="delete-btn" onclick="deleteCustomer(${customer.id})">Delete</button>
+                    </td>
+                </tr>`;
+        });
+
+        usersTable.innerHTML = html + '</tbody></table>';
+    } catch (err) {
+        console.error("Error loading customers:", err);
+        usersTable.innerHTML = `<p>Connection error. Please try again.</p>`;
+    }
+}
+
+// Optional: Add the delete function if you haven't yet
+async function deleteCustomer(id) {
+    if (confirm("Are you sure you want to delete this customer?")) {
+        try {
+            const res = await fetch(`${API_BASE}/admin/customers/delete`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: id }),
+                credentials: 'include'
+            });
+            
+            if (res.ok) {
+                document.getElementById(`customer-${id}`).remove();
+                alert("Customer removed.");
+            }
+        } catch (err) {
+            console.error("Delete failed:", err);
+        }
+    }
+}
 // 5. CUSTOMER & ORDER LOGIC
 async function loadOrders() {
     try {
@@ -301,4 +369,14 @@ window.onclick = function(event) {
     const addModal = document.getElementById('addProductModal');
     if (event.target == editModal) editModal.style.display = "none";
     if (event.target == addModal) addModal.style.display = "none";
+}
+
+async function handleLogout() {
+    if(confirm("Are you sure you want to log out?")) {
+        const res = await fetch(`${API_BASE}/admin/logout`, { credentials: 'include' });
+        const result = await res.json();
+        if(result.success) {
+            window.location.href = 'index.html'; // Or your login page
+        }
+    }
 }
