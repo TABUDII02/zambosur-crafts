@@ -378,34 +378,66 @@ async function deleteCustomer(customerId, name) {
 // 5. CUSTOMER & ORDER LOGIC
 async function loadOrders() {
     try {
-        const res = await fetch(`${API_BASE}/admin/orders`, { credentials: 'include' });
+        const res = await fetch(`${API_BASE}/admin/orders`, {
+            credentials: 'include'
+        });
         const data = await res.json();
         const ordersArray = Array.isArray(data) ? data : data.orders;
 
-        let html = `<table><thead><tr><th>Order #</th><th>Customer</th><th>Total</th><th>Status</th><th>Action</th></tr></thead><tbody>`;
+        if (!ordersArray) {
+            console.error("No orders array found in response");
+            return;
+        }
+
+        // Added headers for Address, Payment, and Total to match your cells
+        let html = `
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order #</th>
+                        <th>Customer</th>
+                        <th>Shipping Address</th>
+                        <th>Payment</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>`;
         
         ordersArray.forEach(o => {
             html += `
                 <tr>
                     <td>#${o.id}</td>
-                    <td><strong>${o.customer_name || 'Guest'}</strong></td>
-                    <td>₱${parseFloat(o.total_amount).toLocaleString()}</td>
+                    <td>
+                        <strong>${o.customer_name || 'Guest'}</strong><br>
+                        <small style="color: #666;">${o.contact_number || 'No contact'}</small>
+                    </td>
+                    <td style="max-width: 200px; font-size: 11px; line-height: 1.4;">
+                        ${o.shipping_address || 'Not provided'}
+                    </td>
+                    <td><small>${o.payment_method}</small></td>
+                    <td style="font-weight: bold;">₱${parseFloat(o.total_amount).toLocaleString()}</td>
                     <td><span class="badge badge-${o.status.toLowerCase()}">${o.status}</span></td>
                     <td>
                         <select onchange="updateStatus(${o.id}, this.value)" class="status-select">
                             <option value="Pending" ${o.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                            <option value="Processing" ${o.status === 'Processing' ? 'selected' : ''}>Processing</option>
                             <option value="Shipped" ${o.status === 'Shipped' ? 'selected' : ''}>Shipped</option>
                             <option value="Delivered" ${o.status === 'Delivered' ? 'selected' : ''}>Delivered</option>
+                            <option value="Canceled" ${o.status === 'Canceled' ? 'selected' : ''}>Cancelled</option>
                         </select>
                     </td>
-                </tr>`;
+                </tr>
+            `;
         });
+        
         document.getElementById('ordersTable').innerHTML = html + '</tbody></table>';
     } catch (err) {
-        document.getElementById('ordersTable').innerHTML = `<p>Failed to load orders.</p>`;
+        console.error("Error loading orders:", err);
+        document.getElementById('ordersTable').innerHTML = `<p class="error">Failed to load orders.</p>`;
     }
 }
-
 async function updateStatus(orderId, newStatus) {
     try {
         await fetch(`${API_BASE}/admin/orders/update`, {
