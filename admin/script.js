@@ -1,7 +1,7 @@
 /**
  * ZamboSur Crafts Admin Logic
  */
-const API_URL = window.location.origin + 'https://zambosur-api-v2.onrender.com';
+
 const API_BASE = 'https://zambosur-api-v2.onrender.com';
 
 // 1. MAIN NAVIGATION FUNCTION
@@ -256,7 +256,8 @@ async function updateStatus(orderId, newStatus) {
         const res = await fetch(`${API_BASE}/admin/orders/update`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ order_id: orderId, status: newStatus })
+            body: JSON.stringify({ order_id: orderId, status: newStatus }),
+            credentials: 'include'
         });
         
         const result = await res.json();
@@ -333,7 +334,8 @@ async function confirmDelete(id) {
     if (confirm("Are you sure you want to delete this product?")) {
         try {
             const res = await fetch(`${API_BASE}/admin/products/${id}`, {
-                method: 'DELETE'
+                method: 'DELETE',
+                credentials: 'include'
             });
             const result = await res.json();
             
@@ -422,7 +424,8 @@ async function saveProductEdit() {
         const res = await fetch(`${API_URL}/admin/products/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(updatedData)
+            body: JSON.stringify(updatedData),
+            credentials: 'include'
         });
 
         const result = await res.json();
@@ -534,12 +537,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 2. Send to PHP
             // Replace with your actual ngrok URL and the correct path to index.php
-            fetch('https://zambosur-api-v2.onrender.comadmin/products/add', {
+           fetch(`${API_BASE}/admin/products/add`, {
                 method: 'POST',
-                headers: {
-                    'ngrok-skip-browser-warning': 'true'
-                },
-                body: formData
+                body: formData,
+               credentials: 'include'
             })
             .then(response => response.json())
             .then(result => {
@@ -569,7 +570,8 @@ async function deleteCustomer(customerId, name) {
         const res = await fetch(`${API_BASE}/admin/customers/delete`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id: customerId })
+            body: JSON.stringify({ id: customerId }),
+            credentials: 'include'
         });
 
         const result = await res.json();
