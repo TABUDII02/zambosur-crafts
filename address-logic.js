@@ -59,7 +59,6 @@ async function loadAddresses() {
     const shippingContainer = document.getElementById('shippingAddressList');
     const billingContainer = document.getElementById('billingAddressList');
     
-    // Ensure containers exist before trying to fill them
     if (!defaultContainer || !shippingContainer || !billingContainer) return;
 
     try {
@@ -68,44 +67,45 @@ async function loadAddresses() {
             credentials: 'include'
         });
         
-        if (!response.ok) {
-            const errorText = await response.text();
-            console.error("Server error:", errorText);
-            return;
-        }
+        // 1. Get the raw text first to debug if there are still PHP notices
+        const rawData = await response.text();
+        
+        try {
+            // Try to parse the cleaned JSON
+            const result = JSON.parse(rawData.substring(rawData.indexOf('{'))); 
 
-        const result = await response.json();
+            if (result.success) {
+                defaultContainer.innerHTML = '';
+                shippingContainer.innerHTML = '';
+                billingContainer.innerHTML = '';
 
-        if (result.success) {
-            // 1. Clear current view
-            defaultContainer.innerHTML = '';
-            shippingContainer.innerHTML = '';
-            billingContainer.innerHTML = '';
+                result.addresses.forEach(addr => {
+                    const cardHTML = createAddressCard(addr);
 
-            // 2. Loop through the addresses and sort them into containers
-            result.addresses.forEach(addr => {
-                const cardHTML = createAddressCard(addr);
+                    // Sort into Default section
+                    if (parseInt(addr.is_default) === 1) {
+                        defaultContainer.innerHTML += cardHTML;
+                    }
 
-                // Add to Default section if it's the default
-                if (parseInt(addr.is_default) === 1) {
-                    defaultContainer.innerHTML += cardHTML;
-                }
+                    // Sort into Specific Type sections (added .toLowerCase() for safety)
+                    const type = addr.address_type.toLowerCase();
+                    if (type === 'shipping') {
+                        shippingContainer.innerHTML += cardHTML;
+                    } else if (type === 'billing') {
+                        billingContainer.innerHTML += cardHTML;
+                    }
+                });
 
-                // Add to specific type sections
-                if (addr.address_type === 'shipping') {
-                    shippingContainer.innerHTML += cardHTML;
-                } else if (addr.address_type === 'billing') {
-                    billingContainer.innerHTML += cardHTML;
-                }
-            });
-
-            // 3. Handle empty states (so the page doesn't look broken if empty)
-            checkEmpty(shippingContainer, "No shipping addresses saved.");
-            checkEmpty(billingContainer, "No billing addresses saved.");
-            checkEmpty(defaultContainer, "No default address set.");
+                checkEmpty(shippingContainer, "No shipping addresses saved.");
+                checkEmpty(billingContainer, "No billing addresses saved.");
+                checkEmpty(defaultContainer, "No default address set.");
+            }
+        } catch (jsonErr) {
+            console.error("JSON Parsing failed. Raw response:", rawData);
+            defaultContainer.innerHTML = "<p>Error loading data. Check console.</p>";
         }
     } catch (err) {
-        console.error("Error loading addresses:", err);
+        console.error("Network error:", err);
     }
 }
 
